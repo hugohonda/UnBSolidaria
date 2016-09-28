@@ -14,14 +14,27 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginActivity"
-            android:label="@string/app_name">
+            android:name=".SplashActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity android:name=".SignupChoiceActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".SignupUserActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".SignupAssActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>
