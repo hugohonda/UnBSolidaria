@@ -78,6 +78,7 @@ public class SignupUserActivity extends AppCompatActivity {
                     public void run() {
                         // On complete call either onSignupSuccess or onSignupFailed
                         // depending on success
+                        // por enquanto, preenchendo os campos sob as devidas regras dará sempre sucesso no signup
                         onSignupSuccess();
                         // onSignupFailed();
                         progressDialog.dismiss();
@@ -85,9 +86,8 @@ public class SignupUserActivity extends AppCompatActivity {
                 }, 3000);
     }
 
-
     public void onSignupSuccess() {
-        Toast.makeText(getApplicationContext(), "Conta criada com Seuscesso!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Conta criada com Sucesso!", Toast.LENGTH_LONG).show();
         _signupButton.setEnabled(true);
         setResult(RESULT_USER_OK, null);
         finish();
@@ -98,6 +98,7 @@ public class SignupUserActivity extends AppCompatActivity {
         _signupButton.setEnabled(true);
     }
 
+    // faz validação das string obtidas a partir das pespectivas textBoxes
     public boolean validate() {
         boolean valid = true;
 
@@ -106,25 +107,25 @@ public class SignupUserActivity extends AppCompatActivity {
         String password = _passwordText.getText().toString();
         String rPassword = _rPasswordText.getText().toString();
 
-        if (name.isEmpty() || name.length() < 3) {
-            _nameText.setError("at least 3 characters");
+        if (name.isEmpty() || name.length() < 4) {
+            _nameText.setError("deve ter ao menos 4 caracteres");
             valid = false;
         } else {
             _nameText.setError(null);
         }
 
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("enter a valid email address");
+            _emailText.setError("endereço inválido");
             valid = false;
         } else {
             _emailText.setError(null);
         }
 
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            _passwordText.setError("between 4 and 10 alphanumeric characters");
+            _passwordText.setError("deve ter entre 4 e 10 caracteres");
             valid = false;
         } else if(!rPassword.equals(password)){
-            _passwordText.setError("incompatibles passwords");
+            _passwordText.setError("senha incompatível, tente novamente");
             valid = false;
         } else{
             _passwordText.setError(null);
