@@ -13,6 +13,12 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="72dp"
+            android:text="@string/ass"
+            android:gravity="center_horizontal" />
+
         <!--  Name Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"

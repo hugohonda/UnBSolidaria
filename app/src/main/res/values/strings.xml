@@ -3,9 +3,13 @@
 
     <!-- Strings related to login -->
     <string name="logo">Logo</string>
-    <string name="user">Aluno</string>
+    <string name="user">Voluntário</string>
     <string name="ass">Associação</string>
     <string name="name">Nome</string>
+    <string name="age">Idade</string>
+    <string name="matricula">Matrícula</string>
+    <string name="gender">Gênero</string>
+    <string name="adress">Endereço</string>
     <string name="new_account">Criar conta</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Senha</string>
