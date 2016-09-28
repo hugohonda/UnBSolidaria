@@ -8,13 +8,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SignupAssActivity extends AppCompatActivity {
     private static final int RESULT_BACK = 2;
+    private static final int RESULT_ASS_OK = 10;
 
     private EditText _nameText;
     private EditText _emailText;
     private EditText _passwordText;
+    private EditText _rPasswordText;
     private Button _signupButton;
     private TextView _loginLink;
 
@@ -26,6 +29,7 @@ public class SignupAssActivity extends AppCompatActivity {
         _nameText = (EditText) findViewById(R.id.input_name_ass);
         _emailText = (EditText) findViewById(R.id.input_email_ass);
         _passwordText = (EditText) findViewById(R.id.input_password_ass);
+        _rPasswordText = (EditText) findViewById(R.id.input_retype_password_ass) ;
         _signupButton = (Button) findViewById(R.id.btn_signup_ass);
         _loginLink = (TextView) findViewById(R.id.link_login_ass);
 
@@ -40,7 +44,7 @@ public class SignupAssActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Finish the registration screen and return to the Login activity
-                setResult(RESULT_CANCELED);
+                setResult(RESULT_CANCELED,null);
                 finish();
             }
         });
@@ -61,11 +65,7 @@ public class SignupAssActivity extends AppCompatActivity {
 
         _signupButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(this,
-                R.style.AppTheme_PopupOverlay);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
-        progressDialog.show();
+        final ProgressDialog progressDialog = ProgressDialog.show(this,null,"Entrando em contato com os moderadores...",true,false);
 
         String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
@@ -87,8 +87,12 @@ public class SignupAssActivity extends AppCompatActivity {
 
 
     public void onSignupSuccess() {
+        Toast.makeText(
+                getApplicationContext(),
+                "Pedido de Criação feito com suscesso. Em breve entraremos em contato",
+                Toast.LENGTH_LONG).show();
         _signupButton.setEnabled(true);
-        setResult(RESULT_OK, null);
+        setResult(RESULT_ASS_OK, null);
         finish();
     }
 
@@ -103,6 +107,7 @@ public class SignupAssActivity extends AppCompatActivity {
         String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
+        String rPassword = _rPasswordText.getText().toString();
 
         if (name.isEmpty() || name.length() < 3) {
             _nameText.setError("at least 3 characters");
@@ -114,7 +119,10 @@ public class SignupAssActivity extends AppCompatActivity {
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _emailText.setError("enter a valid email address");
             valid = false;
-        } else {
+        } else if(!rPassword.equals(password)){
+            _passwordText.setError("incompatibles passwords");
+            valid = false;
+        }else {
             _emailText.setError(null);
         }
 

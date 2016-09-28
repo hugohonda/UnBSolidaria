@@ -17,6 +17,8 @@ import android.widget.Toast;
  */
 public class LoginActivity extends AppCompatActivity {
     private static final int REQUEST_SIGNUP = 0;
+    private static final int RESULT_USER_OK = 5;
+    private static final int RESULT_ASS_OK = 10;
 
     private EditText _emailText;
     private EditText _passwordText;
@@ -89,10 +91,12 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SIGNUP) {
-            if (resultCode == RESULT_OK) {
+            if (resultCode == RESULT_USER_OK) {
 
                 // TODO: Implement successful signup logic here
                 // By default we just finish the Activity and log them in automatically
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
                 this.finish();
             }
         }
@@ -105,10 +109,8 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginSuccess() {
-        // TODO : CREATE OWN LOGIC
-        // depois do login ir para a tela principal ou do usuario ou da associação
-        /* Intent intent = new Intent(this, Main.class);
-        startActivity(intent); */
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
         finish();
     }
 

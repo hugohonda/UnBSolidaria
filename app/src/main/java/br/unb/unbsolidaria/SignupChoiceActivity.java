@@ -9,6 +9,8 @@ import android.widget.Button;
 public class SignupChoiceActivity extends AppCompatActivity {
 
     private static final int REQUEST_SIGNUP = 0;
+    private static final int RESULT_USER_OK = 5;
+    private static final int RESULT_ASS_OK = 10;
 
     private Button aluno;
     private Button ass;
@@ -41,9 +43,12 @@ public class SignupChoiceActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_SIGNUP) {
-            if (resultCode == RESULT_OK) {
-               setResult(RESULT_OK);
-               this.finish();
+            if (resultCode == RESULT_USER_OK) {
+                setResult(RESULT_USER_OK,null);
+                this.finish();
+            } else if(resultCode == RESULT_ASS_OK) {
+                setResult(RESULT_ASS_OK,null);
+                this.finish();
             }else if(resultCode == RESULT_CANCELED){
                 this.finish();
             }

@@ -8,13 +8,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SignupUserActivity extends AppCompatActivity {
     private static final int RESULT_BACK = 2;
+    private static final int RESULT_USER_OK = 5;
 
     private EditText _nameText;
     private EditText _emailText;
     private EditText _passwordText;
+    private EditText _rPasswordText;
     private Button _signupButton;
     private TextView _loginLink;
 
@@ -26,6 +29,7 @@ public class SignupUserActivity extends AppCompatActivity {
         _nameText = (EditText) findViewById(R.id.input_name_user);
         _emailText = (EditText) findViewById(R.id.input_email_user);
         _passwordText = (EditText) findViewById(R.id.input_password_user);
+        _rPasswordText = (EditText) findViewById(R.id.input_retype_password_user);
         _signupButton = (Button) findViewById(R.id.btn_signup_user);
         _loginLink = (TextView) findViewById(R.id.link_login_user);
 
@@ -40,7 +44,7 @@ public class SignupUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Finish the registration screen and return to the Login activity
-                setResult(RESULT_CANCELED);
+                setResult(RESULT_CANCELED,null);
                 finish();
             }
         });
@@ -61,11 +65,7 @@ public class SignupUserActivity extends AppCompatActivity {
 
         _signupButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = new ProgressDialog(this,
-                R.style.AppTheme_PopupOverlay);
-        progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Creating Account...");
-        progressDialog.show();
+        final ProgressDialog progressDialog = ProgressDialog.show(this,null,"Criando Conta...",true,false);
 
         String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
@@ -87,8 +87,9 @@ public class SignupUserActivity extends AppCompatActivity {
 
 
     public void onSignupSuccess() {
+        Toast.makeText(getApplicationContext(), "Conta criada com Seuscesso!", Toast.LENGTH_LONG).show();
         _signupButton.setEnabled(true);
-        setResult(RESULT_OK, null);
+        setResult(RESULT_USER_OK, null);
         finish();
     }
 
@@ -103,6 +104,7 @@ public class SignupUserActivity extends AppCompatActivity {
         String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
+        String rPassword = _rPasswordText.getText().toString();
 
         if (name.isEmpty() || name.length() < 3) {
             _nameText.setError("at least 3 characters");
@@ -121,7 +123,10 @@ public class SignupUserActivity extends AppCompatActivity {
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
             _passwordText.setError("between 4 and 10 alphanumeric characters");
             valid = false;
-        } else {
+        } else if(!rPassword.equals(password)){
+            _passwordText.setError("incompatibles passwords");
+            valid = false;
+        } else{
             _passwordText.setError(null);
         }
 
