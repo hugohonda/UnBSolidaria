@@ -12,10 +12,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 /**
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity {
+    private FirebaseAnalytics mFirebaseAnalytics;
     private static final int REQUEST_SIGNUP = 0;
     private static final int RESULT_USER_OK = 5;
     private static final int RESULT_ASS_OK = 10;
@@ -30,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getApplicationContext());
 
         _emailText = (EditText) findViewById(R.id.input_email);
         _passwordText = (EditText) findViewById(R.id.input_password);
