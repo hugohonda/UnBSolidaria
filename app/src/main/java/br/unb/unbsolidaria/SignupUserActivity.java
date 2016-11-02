@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import br.unb.unbsolidaria.entidades.ValidaCadastro;
+
 public class SignupUserActivity extends AppCompatActivity {
     private static final int RESULT_BACK = 2;
     private static final int RESULT_USER_OK = 5;
@@ -20,16 +22,21 @@ public class SignupUserActivity extends AppCompatActivity {
     private EditText _rPasswordText;
     private Button _signupButton;
     private TextView _loginLink;
-
+    private EditText _cpfText;
+    private EditText _cepText;
+    private EditText _matriculaText;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_user);
 
         _nameText = (EditText) findViewById(R.id.input_name_user);
+        _cpfText  = (EditText) findViewById(R.id.input_cpf_user);
+        _matriculaText = (EditText) findViewById(R.id.input_matricula_user);
         _emailText = (EditText) findViewById(R.id.input_email_user);
         _passwordText = (EditText) findViewById(R.id.input_password_user);
         _rPasswordText = (EditText) findViewById(R.id.input_retype_password_user);
+        _cepText  = (EditText) findViewById(R.id.input_cep_user);
         _signupButton = (Button) findViewById(R.id.btn_signup_user);
         _loginLink = (TextView) findViewById(R.id.link_login_user);
 
@@ -106,14 +113,23 @@ public class SignupUserActivity extends AppCompatActivity {
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
         String rPassword = _rPasswordText.getText().toString();
+        String cpf = _cpfText.getText().toString();
+        String cep = _cepText.getText().toString();
+        String matricula = _matriculaText.getText().toString();
 
-        if (name.isEmpty() || name.length() < 4) {
-            _nameText.setError("deve ter ao menos 4 caracteres");
+        if (name.isEmpty() || name.length() > 20) {
+            _nameText.setError("deve ter menos de 20 caracteres");
             valid = false;
         } else {
             _nameText.setError(null);
         }
 
+        if(!ValidaCadastro.isValidCPF(cpf)){
+            _cpfText.setError("insira um CPF válido");
+            valid = false;
+        } else {
+            _cpfText.setError(null);
+        }
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _emailText.setError("endereço inválido");
             valid = false;
@@ -121,6 +137,19 @@ public class SignupUserActivity extends AppCompatActivity {
             _emailText.setError(null);
         }
 
+        if(!ValidaCadastro.isValidCEP(cep)){
+            _cepText.setError("insira um CEP válido");
+            valid = false;
+        } else {
+            _cepText.setError(null);
+        }
+
+        if(!ValidaCadastro.isValidMatricula(matricula)){
+            _matriculaText.setError("insira sua matricula da uNb");
+            valid = false;
+        } else {
+            _matriculaText.setError(null);
+        }
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
             _passwordText.setError("deve ter entre 4 e 10 caracteres");
             valid = false;
