@@ -29,11 +29,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
-                android:hint="@string/name" />
+                android:hint="@string/name"
+                android:maxLength="20"/>
         </android.support.design.widget.TextInputLayout>
 
         <!-- cpf Label -->
-
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -43,7 +43,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:hint="@string/cpf"/>
+                android:hint="@string/cpf"
+                android:maxLength="11"/>
         </android.support.design.widget.TextInputLayout>
 
         <!-- Age Label -->
@@ -56,7 +57,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:hint="@string/age"/>
+                android:hint="@string/age"
+                android:maxLength="2"/>
         </android.support.design.widget.TextInputLayout>
 
         <!-- Matricula Label -->
@@ -69,7 +71,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:hint="@string/matricula"/>
+                android:hint="@string/matricula"
+                android:maxLength="9"/>
         </android.support.design.widget.TextInputLayout>
 
         <!-- Gender Label -->
@@ -82,7 +85,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
-                android:hint="@string/gender"/>
+                android:hint="@string/gender" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Adress Label -->
@@ -99,7 +102,6 @@
         </android.support.design.widget.TextInputLayout>
 
         <!--cep Label -->
-
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -109,7 +111,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:hint="@string/cep"/>
+                android:hint="@string/cep"
+                android:maxLength="8"/>
         </android.support.design.widget.TextInputLayout>
 
         <!-- Email Label -->
@@ -135,7 +138,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:hint="@string/prompt_password"/>
+                android:hint="@string/prompt_password"
+                android:maxLength="10"/>
         </android.support.design.widget.TextInputLayout>
 
         <!-- Retype Password Label -->
@@ -148,7 +152,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:hint="@string/prompt_retype_password"/>
+                android:hint="@string/prompt_retype_password"
+                android:maxLength="10"/>
         </android.support.design.widget.TextInputLayout>
 
         <!-- Signup Button -->
