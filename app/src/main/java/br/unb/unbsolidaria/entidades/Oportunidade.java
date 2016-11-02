@@ -9,7 +9,7 @@ import android.icu.util.Calendar;
 public class Oportunidade {
     //TODO: discutir feature de aprovação por parte da Organização
     //não há entidade no banco de dados
-    private boolean requereAprovacao;
+    private boolean requerAprovacao;
     //ID da Oportunidade
     private int mID;
     //Local
