@@ -1,8 +1,11 @@
 package br.unb.unbsolidaria;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -53,6 +56,27 @@ public class SignupUserActivity extends AppCompatActivity {
                 // Finish the registration screen and return to the Login activity
                 setResult(RESULT_CANCELED,null);
                 finish();
+            }
+        });
+
+        _cpfText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(_cpfText.getText().length() == 9 && !ValidaCadastro.isValidCPF(_cpfText.getText().toString())){
+                    _cpfText.setTextColor(Color.RED);
+                } else {
+                    _cpfText.setTextColor(Color.BLACK);
+                }
             }
         });
     }

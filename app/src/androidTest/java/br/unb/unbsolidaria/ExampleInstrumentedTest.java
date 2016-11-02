@@ -36,6 +36,9 @@ public class ExampleInstrumentedTest {
     public void testValidCEP() throws  Exception {
         assertTrue(ValidaCadastro.isValidCEP("12910-180"));
         assertTrue(ValidaCadastro.isValidCEP("12910180"));
+    }
+    @Test
+    public void testValidMatricula() throws Exception {
         assertTrue(ValidaCadastro.isValidMatricula("150019284"));
     }
 }
