@@ -5,7 +5,9 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.text.InputFilter;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -72,10 +74,33 @@ public class SignupUserActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if(_cpfText.getText().length() == 9 && !ValidaCadastro.isValidCPF(_cpfText.getText().toString())){
+                if(_cpfText.getText().length() >= 11 && !ValidaCadastro.isValidCPF(_cpfText.getText().toString())){
                     _cpfText.setTextColor(Color.RED);
+                    _cpfText.setError("insira um CPF válido");
                 } else {
                     _cpfText.setTextColor(Color.BLACK);
+                }
+            }
+        });
+
+        _cepText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if(_cepText.getText().length() >= 8 && !ValidaCadastro.isValidCEP(_cepText.getText().toString())){
+                    _cepText.setTextColor(Color.RED);
+                    _cepText.setError("insira um CEP válido");
+                } else {
+                    _cepText.setTextColor(Color.BLACK);
                 }
             }
         });
@@ -154,6 +179,7 @@ public class SignupUserActivity extends AppCompatActivity {
         } else {
             _cpfText.setError(null);
         }
+
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _emailText.setError("endereço inválido");
             valid = false;
@@ -174,6 +200,7 @@ public class SignupUserActivity extends AppCompatActivity {
         } else {
             _matriculaText.setError(null);
         }
+
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
             _passwordText.setError("deve ter entre 4 e 10 caracteres");
             valid = false;
