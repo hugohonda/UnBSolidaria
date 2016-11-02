@@ -34,8 +34,14 @@ public class ValidaCadastro {
             return cnpj.equals(cnpj.substring(0,12) + digito1.toString() + digito2.toString());
         }
 
+        public static boolean isValidCEP(String cep) {
+            String cepRegEx = "\\d{5}-?\\d{3}";
+            return cep.matches(cepRegEx);
+        }
+
         public static void main(String[] args) {
             System.out.printf("CPF Valido:%s \n", ValidaCadastro.isValidCPF("01115375502"));
             System.out.printf("CNPJ Valido:%s \n", ValidaCadastro.isValidCNPJ("13642634756318"));
+            System.out.printf("CEP Valido:%s \n", ValidaCadastro.isValidCEP("12910-180"));
         }
 }
