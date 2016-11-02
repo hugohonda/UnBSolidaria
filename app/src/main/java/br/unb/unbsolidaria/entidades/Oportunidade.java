@@ -17,7 +17,7 @@ public class Oportunidade {
     private String mLocal;
     //Organização Resp.
     //TODO: classe de Organização
-    //private Organizacao mOrg;
+    private Organizacao mOrg;
     //Quantidade de vagas
     private int mVagas;
     //Título
@@ -35,7 +35,8 @@ public class Oportunidade {
     }
 
     public Oportunidade(int mID, String mLocal, int mVagas, String mTitulo,
-                        String mDescricao, Calendar mInicio, Calendar mFim) {
+                        String mDescricao, Calendar mInicio, Calendar mFim,
+                        Organizacao org) {
         this.mID = mID;
         this.mLocal = mLocal;
         this.mVagas = mVagas;
@@ -43,6 +44,7 @@ public class Oportunidade {
         this.mDescricao = mDescricao;
         this.mInicio = mInicio;
         this.mFim = mFim;
+        this.mOrg = org;
     }
 
     public int getID() {
@@ -99,5 +101,13 @@ public class Oportunidade {
 
     public void setFim(Calendar mFim) {
         this.mFim = mFim;
+    }
+
+    public Organizacao getmOrg() {
+        return mOrg;
+    }
+
+    public void setmOrg(Organizacao mOrg) {
+        this.mOrg = mOrg;
     }
 }
