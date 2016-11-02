@@ -145,7 +145,7 @@ public class SignupUserActivity extends AppCompatActivity {
         }
 
         if(!ValidaCadastro.isValidMatricula(matricula)){
-            _matriculaText.setError("insira sua matricula da uNb");
+            _matriculaText.setError("insira sua matricula da UnB");
             valid = false;
         } else {
             _matriculaText.setError(null);
@@ -158,6 +158,11 @@ public class SignupUserActivity extends AppCompatActivity {
             valid = false;
         } else{
             _passwordText.setError(null);
+        }
+
+        if (valid == false) {
+            Toast erro = new Toast(getApplicationContext()).makeText(getApplicationContext(),"Erro no cadastro, verifique se todos os campos estão corretos", Toast.LENGTH_SHORT);
+            erro.show();
         }
 
         return valid;
