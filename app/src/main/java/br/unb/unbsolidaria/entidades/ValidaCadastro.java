@@ -39,9 +39,15 @@ public class ValidaCadastro {
             return cep.matches(cepRegEx);
         }
 
+        public static boolean isValidMatricula(String matricula){
+            String matriculaRegEx = "^[0-9]{9}$";
+            return matricula.matches(matriculaRegEx);
+        }
+
         public static void main(String[] args) {
             System.out.printf("CPF Valido:%s \n", ValidaCadastro.isValidCPF("01115375502"));
             System.out.printf("CNPJ Valido:%s \n", ValidaCadastro.isValidCNPJ("13642634756318"));
             System.out.printf("CEP Valido:%s \n", ValidaCadastro.isValidCEP("12910-180"));
+            System.out.printf("Matricula Valida:%s \n", ValidaCadastro.isValidMatricula("150019284"));
         }
 }
