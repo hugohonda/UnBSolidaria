@@ -7,6 +7,8 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import br.unb.unbsolidaria.entidades.ValidaCadastro;
+
 import static org.junit.Assert.*;
 
 /**
@@ -20,7 +22,19 @@ public class ExampleInstrumentedTest {
     public void useAppContext() throws Exception {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
-
         assertEquals("br.unb.unbsolidaria", appContext.getPackageName());
+    }
+    @Test
+    public void testValidCPF() throws  Exception {
+        assertTrue(ValidaCadastro.isValidCPF("01115375502"));
+    }
+    @Test
+    public void testValidCNPJ() throws  Exception {
+        assertTrue(ValidaCadastro.isValidCNPJ("13642634756318"));
+    }
+    @Test
+    public void testValidCEP() throws  Exception {
+        assertTrue(ValidaCadastro.isValidCEP("12910-180"));
+        assertTrue(ValidaCadastro.isValidCEP("12910180"));
     }
 }
