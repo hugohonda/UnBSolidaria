@@ -2,6 +2,8 @@ package br.unb.unbsolidaria;
 
 import org.junit.Test;
 
+import br.unb.unbsolidaria.entidades.ValidaCadastro;
+
 import static org.junit.Assert.*;
 
 /**
@@ -14,4 +16,10 @@ public class ExampleUnitTest {
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
     }
+    @Test
+    public void ValidationCorrect() {
+        assertTrue(ValidaCadastro.isValidCPF("96913238932"));
+        assertTrue(ValidaCadastro.isValidCNPJ("00348003000110"));
+    }
+
 }
