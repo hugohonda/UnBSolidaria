@@ -4,12 +4,7 @@ Aplicativo Android - Projeto UnB Solidária - Linguagens de Programação - 2/20
 
 ##To-Do
 
-- [x] Responder [Doodle](http://doodle.com/poll/q3wri9rb37g4ywh6) para a Reunião Semanal
-- [x] Instalar o [Android Studio](https://developer.android.com/studio/index.html)
-- [x] Configurar GitHub de acordo com o Guia Básico abaixo
-- [ ] Implementar Front Cadastro Voluntário
-- [ ] Implementar Front Cadastro Organização
-- [ ] Implementar página inicial de Ofertas de Trabalhos ao Voluntário
+Ver [issues](https://github.com/hugohonda/UnBSolidaria/issues)
 
 ##Code Style a ser seguido:
 
