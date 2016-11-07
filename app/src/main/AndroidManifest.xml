@@ -38,7 +38,16 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".OportunidadeAcitivity"
+            android:label="@string/title_activity_oportunidade_acitivity"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="br.unb.unbsolidaria.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
