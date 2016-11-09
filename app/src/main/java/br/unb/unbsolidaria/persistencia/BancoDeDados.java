@@ -26,15 +26,15 @@ public class BancoDeDados {
     	/*int id, String cpf, String nome, String sobrenome, Calendar dataNascimento, String email, String telefone,
         String descricao, String matricula, String endereco, String sexo, boolean ativo*/
         voluntarios = Arrays.asList(
-                new Voluntario(0, "968.551.756-86", "Otávio", "Barros Fernandes", c.setTime(formatoData.parse("05/07/1991")) , "OtavioBarrosFernandes@teleworm.us", "(61) 3186-9880",
+                new Voluntario(0, "968.551.756-86", "Otávio", "Barros Fernandes", getCalendar("05/07/1991") , "OtavioBarrosFernandes@teleworm.us", "(61) 3186-9880",
                 					/* Descrição */, "12/0136867", "Rua do Pontal, 1394, Samambaia-DF", "M", true),
-                new Voluntario(1, "848.372.290-93", "André", "Barbosa Melo", c.setTime(formatoData.parse("22/11/1994")) , "AndreBarbosaMelo@rhyta.com", "(61) 998301-6297",
+                new Voluntario(1, "848.372.290-93", "André", "Barbosa Melo", getCalendar("22/11/1994") , "AndreBarbosaMelo@rhyta.com", "(61) 998301-6297",
                 					/* Descrição */, "13/0075893", "Rua Doutor José Leite Pinheiro, 1480, Taguatinga-DF", "M", true),
-                new Voluntario(2, "307.784.202-56", "Murilo", "Correia Melo", c.setTime(formatoData.parse("09/01/1995")), "MuriloCorreiaMelo@dayrep.com", "(61) 3853-8649",
+                new Voluntario(2, "307.784.202-56", "Murilo", "Correia Melo", getCalendar("09/01/1995"), "MuriloCorreiaMelo@dayrep.com", "(61) 3853-8649",
                 					/* Descrição */, "15/0067848", "Quadra QE 38 Conjunto E1, Guara II - DF", "M", true),
-                new Voluntario(3, "905.107.888-90", "Matilde", "Barbosa Barros", c.setTime(formatoData.parse("13/04/1997")), "MatildeBarbosaBarros@armyspy.com", "(61) 99663-6149",
+                new Voluntario(3, "905.107.888-90", "Matilde", "Barbosa Barros", getCalendar("13/04/1997"), "MatildeBarbosaBarros@armyspy.com", "(61) 99663-6149",
                 					/* Descrição */, "14/0183112", "Quadra 36 Conjunto C, Brazlandia - DF", "F", true),
-                new Voluntario(4, "909.543.331-52", "Rebeca", "Pereira Rocha", c.setTime(formatoData.parse("04/10/1996")), "RebecaPereiraRocha@rhyta.com", "(61) 98987-8082",
+                new Voluntario(4, "909.543.331-52", "Rebeca", "Pereira Rocha", getCalendar("04/10/1996"), "RebecaPereiraRocha@rhyta.com", "(61) 98987-8082",
                 					/* Descrição */, "13/0189467", "Quadra QI 2 Conjunto F, Guara I - DF", "F", true)
                 );
         /*int mId, String mCnpj, String mNomeJuridico, String mNomeComercial, String mEmail, String mTelefone, 
@@ -64,6 +64,13 @@ public class BancoDeDados {
                 new Oportunidade(),
                 new Oportunidade()
         );
+    }
+
+    private Calenadar getCalendar(String data){
+    	SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
+    	Calendar c = Calendar.getInstance();
+    	c.setTime(formatoData.parse(data);
+    	return c;
     }
 
     public static BancoDeDados getInstance(){
