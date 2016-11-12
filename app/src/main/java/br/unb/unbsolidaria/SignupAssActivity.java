@@ -3,7 +3,6 @@ package br.unb.unbsolidaria;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Patterns;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -130,7 +129,7 @@ public class SignupAssActivity extends AppCompatActivity {
             _nameText.setError(null);
         }
 
-        if (!ValidaCadastro.isValidCPF(cnpj)) {
+        if (!ValidaCadastro.isValidCNPJ(cnpj)) {
             _cnpjText.setError("insira um CNPJ válido");
             valid = false;
         } else {
@@ -151,7 +150,7 @@ public class SignupAssActivity extends AppCompatActivity {
             _cepText.setError(null);
         }
 
-        if (Patterns.WEB_URL.matcher(site).matches() || site.isEmpty()) {
+        if (android.util.Patterns.WEB_URL.matcher(site).matches() || site.isEmpty()) {
             _websiteText.setError(null);
         } else {
             _websiteText.setError("insira um website válido");
