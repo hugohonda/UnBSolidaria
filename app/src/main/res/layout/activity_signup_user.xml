@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
                 android:hint="@string/name"
-                android:maxLength="20"/>
+                android:maxLength="50"/>
         </android.support.design.widget.TextInputLayout>
 
         <!-- cpf Label -->
