@@ -1,6 +1,9 @@
 package br.unb.unbsolidaria.persistencia;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 import br.unb.unbsolidaria.entidades.Oportunidade;
@@ -21,6 +24,7 @@ public class BancoDeDados {
 
     SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
     Calendar c = Calendar.getInstance();
+
 
     private BancoDeDados () {
         voluntarios = Arrays.asList(
@@ -65,7 +69,7 @@ public class BancoDeDados {
 				new Voluntario(18, "881.528.161-40", "Guilherme", "Oliveira Pereira", getCalendar("15/07/1994"), "GuilhermeOliveiraPereira@teleworm.us", "(61) 99975-2222",
                 					"Estudante de Física","14/0024798", "Quadra CLS 210 Bloco A, Asa Sul - DF", "M", true),
 				new Voluntario(19, "095.392.391-68", "Vinícius", "Pereira Castro", getCalendar("21/05/1994"), "ViniciusPereiraCastro@rhyta.com", "(61) 92427-3487",
-                					"Estudante de Matemática","11/0155788", "Quadra 105 Bloco D, Cruzeiro Novo - DF", "M", true),
+                					"Estudante de Matemática","11/0155788", "Quadra 105 Bloco D, Cruzeiro Novo - DF", "M", true)
                 );
         organizacoes = Arrays.asList(
                 new Organizacao(0, "79.214.237/0001-25","César e Felipe Marcenaria Ltda", "CF Marcenaria", "pesquisa@cesarfelipe.com.br", "(61) 3906-0035",
@@ -107,7 +111,7 @@ public class BancoDeDados {
                 new Organizacao(18, "14.991.575/0001-28", "Lopes e Cia ME", "Lopinho", "lops@gmail.com.br", "(61) 3792-4234", 
                 					"Não possui", "Empresa de Sustentabilidade", "	Quadra SQN 408 Bloco O, Asa Norte - DF", "70856-150"),
                 new Organizacao(19, "06.370.192/0001-04", "Borges e Cia ME", "Beirute", "contato@beirute.com.br", "(61) 3363-6873", 
-                					"www.beirute.com.br", "Empresa de Alimentação", "Rua São Sebastião, Centro, São Sebastião-DF", "71691-087"),
+                					"www.beirute.com.br", "Empresa de Alimentação", "Rua São Sebastião, Centro, São Sebastião-DF", "71691-087")
                 );
         tags = Arrays.asList(
                 new Tags(0, "Marcenaria", "Trabalhos com madeira"),
@@ -141,15 +145,21 @@ public class BancoDeDados {
                 new Oportunidade(16, "Gama", 8, "Saúde Hoje", "Trabalhos voluntários de conscientização social", getCalendar("01/01/2017"), getCalendar("01/02/2017"), organizacoes.get(16)),
                 new Oportunidade(17, "Asa Norte", 1, "Informatica +40", "Trabalhos voluntários inclusão digital", getCalendar("01/01/2017"), getCalendar("01/02/2017"), organizacoes.get(17)),
                 new Oportunidade(18, "Lago Norte", 3, "DF Sutentável", "Trabalhos voluntários de sustentabilidade", getCalendar("01/01/2017"), getCalendar("01/02/2017"), organizacoes.get(18)),
-                new Oportunidade(19, "Asa Sul", 1, "Cozinha para todos", "Trabalhos voluntários para levar comida aos pobres", getCalendar("01/01/2017"), getCalendar("01/02/2017"), organizacoes.get(19)),
+                new Oportunidade(19, "Asa Sul", 1, "Cozinha para todos", "Trabalhos voluntários para levar comida aos pobres", getCalendar("01/01/2017"), getCalendar("01/02/2017"), organizacoes.get(19))
         );
     }
 
-    private Calenadar getCalendar(String data){
+    private Calendar getCalendar(String data) {
     	SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
     	Calendar c = Calendar.getInstance();
-    	c.setTime(formatoData.parse(data);
-    	return c;
+
+        try {
+            c.setTime(formatoData.parse(data));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return c;
     }
 
     public static BancoDeDados getInstance(){

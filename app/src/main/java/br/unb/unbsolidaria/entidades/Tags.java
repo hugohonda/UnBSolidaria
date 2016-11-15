@@ -6,7 +6,7 @@ package br.unb.unbsolidaria.entidades;
 
 public class Tags {
     // ID Banco de Dados
-    private String mId;
+    private int mId;
     // Nome
     private String mNome;
     // Descrição da tag
@@ -15,17 +15,17 @@ public class Tags {
     public Tags() {
 
     }
-    public Tags(String mId, String mNome, String mDescricao) {
+    public Tags(Integer mId, String mNome, String mDescricao) {
         this.mId = mId;
         this.mNome = mNome;
         this.mDescricao = mDescricao;
     }
 
-    public String getId() {
+    public Integer getId() {
         return mId;
     }
 
-    public void setId(String mId) {
+    public void setId(Integer mId) {
         this.mId = mId;
     }
 
