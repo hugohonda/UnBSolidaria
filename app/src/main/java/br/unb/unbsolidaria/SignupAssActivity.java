@@ -10,16 +10,22 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import br.unb.unbsolidaria.entidades.ValidaCadastro;
+
 public class SignupAssActivity extends AppCompatActivity {
     private static final int RESULT_BACK = 2;
     private static final int RESULT_ASS_OK = 10;
 
-    private EditText _nameText;
+    private EditText _nameText;         //Nome comercial
     private EditText _emailText;
     private EditText _passwordText;
     private EditText _rPasswordText;
     private Button _signupButton;
     private TextView _loginLink;
+    private EditText _cnpjText;
+    private EditText _websiteText;
+    private EditText _addrText;
+    private EditText _cepText;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,10 @@ public class SignupAssActivity extends AppCompatActivity {
         _rPasswordText = (EditText) findViewById(R.id.input_retype_password_ass) ;
         _signupButton = (Button) findViewById(R.id.btn_signup_ass);
         _loginLink = (TextView) findViewById(R.id.link_login_ass);
+        _cnpjText = (EditText) findViewById(R.id.input_cnpj_ass);
+        _websiteText = (EditText) findViewById(R.id.input_site_ass);
+        _addrText = (EditText) findViewById(R.id.input_address_ass);
+        _cepText = (EditText) findViewById(R.id.input_cep_ass);
 
         _signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,29 +118,58 @@ public class SignupAssActivity extends AppCompatActivity {
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
         String rPassword = _rPasswordText.getText().toString();
+        String cnpj = _cnpjText.getText().toString();
+        String cep = _cepText.getText().toString();
+        String site = _websiteText.getText().toString();
 
-        if (name.isEmpty() || name.length() < 3) {
-            _nameText.setError("at least 3 characters");
+        if (name.isEmpty() || name.length() > 20) {
+            _nameText.setError("deve ter menos de 20 caracteres");
             valid = false;
         } else {
             _nameText.setError(null);
         }
 
+        if (!ValidaCadastro.isValidCNPJ(cnpj)) {
+            _cnpjText.setError("insira um CNPJ válido");
+            valid = false;
+        } else {
+            _cnpjText.setError(null);
+        }
+
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _emailText.setError("enter a valid email address");
+            _emailText.setError("endereço de email inválido");
             valid = false;
-        } else if(!rPassword.equals(password)){
-            _passwordText.setError("incompatibles passwords");
-            valid = false;
-        }else {
+        } else {
             _emailText.setError(null);
         }
 
-        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
-            _passwordText.setError("between 4 and 10 alphanumeric characters");
+        if (!ValidaCadastro.isValidCEP(cep)) {
+            _cepText.setError("insira um CEP válido");
             valid = false;
         } else {
+            _cepText.setError(null);
+        }
+
+        if (android.util.Patterns.WEB_URL.matcher(site).matches() || site.isEmpty()) {
+            _websiteText.setError(null);
+        } else {
+            _websiteText.setError("insira um website válido");
+            valid = false;
+        }
+
+        if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
+            _passwordText.setError("deve ter entre 4 e 10 caracteres");
+            valid = false;
+        } else if(!rPassword.equals(password)){
+            _passwordText.setError("senha incompatível, tente novamente");
+            valid = false;
+        } else{
             _passwordText.setError(null);
+        }
+
+        if (!valid) {
+            Toast erro = new Toast(getApplicationContext()).makeText(getApplicationContext(),"Erro no cadastro, verifique se todos os campos estão corretos", Toast.LENGTH_SHORT);
+            erro.show();
         }
 
         return valid;

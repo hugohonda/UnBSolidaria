@@ -33,7 +33,7 @@
                 android:maxLength="50"/>
         </android.support.design.widget.TextInputLayout>
 
-        <!-- cpf Label -->
+        <!-- CPF Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -88,7 +88,7 @@
                 android:hint="@string/gender" />
         </android.support.design.widget.TextInputLayout>
 
-        <!-- Adress Label -->
+        <!-- Address Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -98,10 +98,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
-                android:hint="@string/adress"/>
+                android:hint="@string/address"/>
         </android.support.design.widget.TextInputLayout>
 
-        <!--cep Label -->
+        <!-- CEP Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
