@@ -1,6 +1,8 @@
 package br.unb.unbsolidaria.entidades;
 
-import android.icu.util.Calendar;
+//TODO: decidir se é viável o uso da livraria ICU. Razão: disponível somente a partir da API 24 (Android 7.0)
+//import android.icu.util.Calendar;
+import java.util.Calendar;
 
 import java.util.Date;
 

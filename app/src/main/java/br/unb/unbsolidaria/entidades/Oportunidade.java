@@ -1,6 +1,7 @@
 package br.unb.unbsolidaria.entidades;
 
-import android.icu.util.Calendar;
+//import android.icu.util.Calendar;
+import java.util.Calendar;
 
 /**
  * Created by lucasrez on 02/11/16.
@@ -103,11 +104,11 @@ public class Oportunidade {
         this.mFim = mFim;
     }
 
-    public Organizacao getmOrg() {
+    public Organizacao getOrg() {
         return mOrg;
     }
 
-    public void setmOrg(Organizacao mOrg) {
+    public void setOrg(Organizacao mOrg) {
         this.mOrg = mOrg;
     }
 }
