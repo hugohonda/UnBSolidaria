@@ -48,6 +48,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="br.unb.unbsolidaria.MainActivity" />
         </activity>
+        <activity
+            android:name=".ListaOportunidadesActivity">
+        </activity>
     </application>
 
 </manifest>
