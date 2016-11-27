@@ -32,7 +32,27 @@ public class Oportunidade {
     //Data de Fim
     private Calendar mFim;
 
+
+
+    //// TODO: 24/11/2016 modificar quando for pegar a foto do server
+    //para teste pelo res
+    private int photo;
+
     public Oportunidade (){
+    }
+
+    public Oportunidade(int mID, String mLocal, int mVagas, String mTitulo,
+                        String mDescricao, Calendar mInicio, Calendar mFim,
+                        Organizacao org, int photo) {
+        this.mID = mID;
+        this.mLocal = mLocal;
+        this.mVagas = mVagas;
+        this.mTitulo = mTitulo;
+        this.mDescricao = mDescricao;
+        this.mInicio = mInicio;
+        this.mFim = mFim;
+        this.mOrg = org;
+        this.photo = photo;
     }
 
     public Oportunidade(int mID, String mLocal, int mVagas, String mTitulo,
@@ -47,6 +67,8 @@ public class Oportunidade {
         this.mFim = mFim;
         this.mOrg = org;
     }
+
+
 
     public int getID() {
         return mID;
@@ -110,5 +132,13 @@ public class Oportunidade {
 
     public void setOrg(Organizacao mOrg) {
         this.mOrg = mOrg;
+    }
+
+    public int getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(int photo) {
+        this.photo = photo;
     }
 }

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true"
+    app:cardPreventCornerOverlap="true"
+    app:cardMaxElevation="3dp"
+    app:cardCornerRadius="4dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_alignParentTop="true"
+                android:id="@+id/iv_org"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@null"
+                app:srcCompat="@drawable/launcher_logo" />
+
+            <TextView
+                android:id="@+id/tv_titulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingLeft="16dp"
+                android:paddingTop="24dp"
+                android:textSize="24sp"
+                android:text="Unb Voluntaria"
+                android:layout_alignParentStart="true"
+                android:layout_gravity="bottom"/>
+        </FrameLayout>
+
+
+
+        <TextView
+            android:id="@+id/local"
+            android:layout_below="@id/top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:textSize="14sp"
+            android:text="Local:"/>
+
+        <TextView
+            android:id="@+id/vaga"
+            android:layout_below="@+id/tv_local"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="2dp"
+            android:paddingLeft="16dp"
+
+            android:textSize="14sp"
+            android:text="Vagas:"/>
+
+        <TextView
+            android:id="@+id/descricao"
+            android:layout_below="@id/vaga"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="2dp"
+            android:paddingLeft="16dp"
+            android:textSize="14sp"
+            android:paddingBottom="24dp"
+            android:text="Descrição:"/>
+
+        <TextView
+            android:id="@+id/tv_vaga"
+            android:layout_below="@+id/tv_local"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="2dp"
+            android:paddingLeft="16dp"
+
+            android:textSize="14sp"
+            android:text="35"
+            android:layout_toEndOf="@id/vaga"
+            android:layout_alignLeft="@+id/tv_descricao"/>
+
+
+        <TextView
+            android:id="@+id/tv_descricao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="2dp"
+            android:paddingLeft="16dp"
+            android:textSize="14sp"
+            android:text="descrição"
+            android:paddingBottom="24dp"
+            android:layout_below="@id/vaga"
+            android:layout_toEndOf="@+id/descricao" />
+
+        <TextView
+            android:id="@+id/tv_local"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:paddingLeft="16dp"
+            android:textSize="14sp"
+            android:text="Asa Norte"
+            android:layout_below="@+id/top"
+            android:layout_alignLeft="@id/tv_descricao" />
+
+
+    </RelativeLayout>
+
+
+</android.support.v7.widget.CardView>
