@@ -14,6 +14,15 @@ import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+import br.unb.unbsolidaria.entidades.Oportunidade;
+import br.unb.unbsolidaria.entidades.Organizacao;
+
 /**
  * A login screen that offers login via email/password.
  */
@@ -113,7 +122,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginSuccess() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, ListaOportunidadesActivity.class);
         startActivity(intent);
         finish();
     }
@@ -150,5 +159,8 @@ public class LoginActivity extends AppCompatActivity {
 
         return valid;
     }
+
+
+
 }
 

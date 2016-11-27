@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
 
+import br.unb.unbsolidaria.R;
 import br.unb.unbsolidaria.entidades.Oportunidade;
 import br.unb.unbsolidaria.entidades.Organizacao;
 import br.unb.unbsolidaria.entidades.Tags;
@@ -126,7 +127,7 @@ public class BancoDeDados {
                 new Tags(9, "Animais", "Trablhos com animais")
         );
         oportunidades = Arrays.asList(
-                new Oportunidade(0, "Asa Norte", 5, "Madeira Hoje", "Trabalhos voluntários de marcenaria", getCalendar("01/01/2017"), getCalendar("01/02/2017"), organizacoes.get(0)),
+                new Oportunidade(0, "Asa Norte", 5, "Madeira Hoje", "Trabalhos voluntários de marcenaria", getCalendar("01/01/2017"), getCalendar("01/02/2017"), organizacoes.get(0), R.drawable.logo),
                 new Oportunidade(1, "Asa Sul", 1, "Ajude nos Gastos", "Trabalhos voluntários de acessoria", getCalendar("01/01/2017"), getCalendar("01/02/2017"), organizacoes.get(1)),
                 new Oportunidade(2, "Lago Norte", 2, "Acessoria de Informação", "Trabalhos voluntários recolhimento de informações", getCalendar("01/01/2017"), getCalendar("01/02/2017"), organizacoes.get(2)),
                 new Oportunidade(3, "Cruzeiro", 4, "Meninas na sociedade", "Trabalhos de inserção de meninas na computação", getCalendar("01/01/2017"), getCalendar("01/02/2017"), organizacoes.get(3)),

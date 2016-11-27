@@ -16,6 +16,15 @@ import android.view.MenuItem;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
+import br.unb.unbsolidaria.entidades.Oportunidade;
+import br.unb.unbsolidaria.entidades.Organizacao;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -103,4 +112,8 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+
 }

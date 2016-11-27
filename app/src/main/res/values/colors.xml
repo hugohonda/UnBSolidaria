@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#02294e</color>
     <color name="colorAccent">#02853e</color>
     <color name="gray">#EEEEEE</color>
-
+    <color name="dark_gray">#7f7f7f</color>
     //TODO: incluir cores do @imafra
 </resources>
