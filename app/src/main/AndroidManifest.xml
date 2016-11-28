@@ -40,7 +40,7 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".OportunidadeAcitivity"
+            android:name=".OpportunityAcitivity"
             android:label="@string/title_activity_oportunidade_acitivity"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -49,7 +49,7 @@
                 android:value="br.unb.unbsolidaria.MainActivity" />
         </activity>
         <activity
-            android:name=".ListaOportunidadesActivity">
+            android:name=".OpportunitiesListActivity">
         </activity>
     </application>
 

@@ -2,7 +2,7 @@ package br.unb.unbsolidaria;
 
 import org.junit.Test;
 
-import br.unb.unbsolidaria.entidades.ValidaCadastro;
+import br.unb.unbsolidaria.entities.RegisterValidation;
 
 import static org.junit.Assert.*;
 
@@ -18,8 +18,8 @@ public class ExampleUnitTest {
     }
     @Test
     public void ValidationCorrect() {
-        assertTrue(ValidaCadastro.isValidCPF("96913238932"));
-        assertTrue(ValidaCadastro.isValidCNPJ("00348003000110"));
+        assertTrue(RegisterValidation.isValidCPF("96913238932"));
+        assertTrue(RegisterValidation.isValidCNPJ("00348003000110"));
     }
 
 }

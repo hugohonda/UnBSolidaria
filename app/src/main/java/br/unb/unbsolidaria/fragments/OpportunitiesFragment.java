@@ -10,24 +10,24 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import br.unb.unbsolidaria.Adapter.OportunidadesAdapter;
-import br.unb.unbsolidaria.ListaOportunidadesActivity;
+import br.unb.unbsolidaria.adapter.OpportunitiesAdapter;
+import br.unb.unbsolidaria.OpportunitiesListActivity;
 import br.unb.unbsolidaria.R;
-import br.unb.unbsolidaria.entidades.Oportunidade;
+import br.unb.unbsolidaria.entities.Opportunity;
 
 /**
  * Created by Scartezini on 24/11/2016.
  */
 
-public class OportunidadesFragment  extends Fragment {
+public class OpportunitiesFragment extends Fragment {
     private RecyclerView mRecyclerView;
-    private List<Oportunidade> mList;
+    private List<Opportunity> mList;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_oportunidades, container, false);
+        View view = inflater.inflate(R.layout.fragment_opportunities, container, false);
 
         mRecyclerView = (RecyclerView) view.findViewById(R.id.rv_list);
         mRecyclerView.setHasFixedSize(true);
@@ -44,11 +44,11 @@ public class OportunidadesFragment  extends Fragment {
                 LinearLayoutManager llm = (LinearLayoutManager) mRecyclerView.getLayoutManager();
 
 
-                OportunidadesAdapter adapter = (OportunidadesAdapter) mRecyclerView.getAdapter();
+                OpportunitiesAdapter adapter = (OpportunitiesAdapter) mRecyclerView.getAdapter();
 
                 if (mList.size() == llm.findLastCompletelyVisibleItemPosition() + 1) {
 
-                    List<Oportunidade> listAux = ((ListaOportunidadesActivity) getActivity()).getSetOportinidadesList(3);
+                    List<Opportunity> listAux = ((OpportunitiesListActivity) getActivity()).getSetOportinidadesList(3);
 
                     for (int i = 0; i < listAux.size(); i++) {
                         adapter.addListItem(listAux.get(i), mList.size());
@@ -62,10 +62,9 @@ public class OportunidadesFragment  extends Fragment {
         mRecyclerView.setLayoutManager(llm);
 
 
-
-        mList = ((ListaOportunidadesActivity) getActivity()).getSetOportinidadesList(3);
-        OportunidadesAdapter adapter = new OportunidadesAdapter(getActivity(), mList);
-        mRecyclerView.setAdapter( adapter );
+        mList = ((OpportunitiesListActivity) getActivity()).getSetOportinidadesList(3);
+        OpportunitiesAdapter adapter = new OpportunitiesAdapter(getActivity(), mList);
+        mRecyclerView.setAdapter(adapter);
 
 
         return view;

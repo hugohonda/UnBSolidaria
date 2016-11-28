@@ -31,7 +31,7 @@
                 app:srcCompat="@drawable/launcher_logo" />
 
             <TextView
-                android:id="@+id/tv_titulo"
+                android:id="@+id/tv_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="16dp"

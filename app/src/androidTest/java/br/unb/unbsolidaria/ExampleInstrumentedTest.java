@@ -7,7 +7,7 @@ import android.support.test.runner.AndroidJUnit4;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import br.unb.unbsolidaria.entidades.ValidaCadastro;
+import br.unb.unbsolidaria.entities.RegisterValidation;
 
 import static org.junit.Assert.*;
 
@@ -26,19 +26,19 @@ public class ExampleInstrumentedTest {
     }
     @Test
     public void testValidCPF() throws  Exception {
-        assertTrue(ValidaCadastro.isValidCPF("01115375502"));
+        assertTrue(RegisterValidation.isValidCPF("01115375502"));
     }
     @Test
     public void testValidCNPJ() throws  Exception {
-        assertTrue(ValidaCadastro.isValidCNPJ("13642634756318"));
+        assertTrue(RegisterValidation.isValidCNPJ("13642634756318"));
     }
     @Test
     public void testValidCEP() throws  Exception {
-        assertTrue(ValidaCadastro.isValidCEP("12910-180"));
-        assertTrue(ValidaCadastro.isValidCEP("12910180"));
+        assertTrue(RegisterValidation.isValidCEP("12910-180"));
+        assertTrue(RegisterValidation.isValidCEP("12910180"));
     }
     @Test
     public void testValidMatricula() throws Exception {
-        assertTrue(ValidaCadastro.isValidMatricula("150019284"));
+        assertTrue(RegisterValidation.isValidMatricula("150019284"));
     }
 }

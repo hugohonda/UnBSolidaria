@@ -7,7 +7,7 @@
         android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/item_lista_oportunidade_tv_titulo"
+        android:id="@+id/item_lista_oportunidade_tv_title"
         android:textStyle="normal|bold"
         android:textAlignment="viewStart"
         android:textSize="18sp" />
@@ -23,7 +23,7 @@
         android:text="TextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/item_lista_oportunidade_tv_organizacao"
+        android:id="@+id/item_lista_oportunidade_tv_organization"
         android:textAlignment="viewStart" />
 
 </LinearLayout>

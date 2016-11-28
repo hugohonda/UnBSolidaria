@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import br.unb.unbsolidaria.entidades.ValidaCadastro;
+import br.unb.unbsolidaria.entities.RegisterValidation;
 
 public class SignupAssActivity extends AppCompatActivity {
     private static final int RESULT_BACK = 2;
@@ -35,7 +35,7 @@ public class SignupAssActivity extends AppCompatActivity {
         _nameText = (EditText) findViewById(R.id.input_name_ass);
         _emailText = (EditText) findViewById(R.id.input_email_ass);
         _passwordText = (EditText) findViewById(R.id.input_password_ass);
-        _rPasswordText = (EditText) findViewById(R.id.input_retype_password_ass) ;
+        _rPasswordText = (EditText) findViewById(R.id.input_retype_password_ass);
         _signupButton = (Button) findViewById(R.id.btn_signup_ass);
         _loginLink = (TextView) findViewById(R.id.link_login_ass);
         _cnpjText = (EditText) findViewById(R.id.input_cnpj_ass);
@@ -54,7 +54,7 @@ public class SignupAssActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Finish the registration screen and return to the Login activity
-                setResult(RESULT_CANCELED,null);
+                setResult(RESULT_CANCELED, null);
                 finish();
             }
         });
@@ -75,7 +75,7 @@ public class SignupAssActivity extends AppCompatActivity {
 
         _signupButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = ProgressDialog.show(this,null,"Entrando em contato com os moderadores...",true,false);
+        final ProgressDialog progressDialog = ProgressDialog.show(this, null, "Entrando em contato com os moderadores...", true, false);
 
         String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
@@ -129,7 +129,7 @@ public class SignupAssActivity extends AppCompatActivity {
             _nameText.setError(null);
         }
 
-        if (!ValidaCadastro.isValidCNPJ(cnpj)) {
+        if (!RegisterValidation.isValidCNPJ(cnpj)) {
             _cnpjText.setError("insira um CNPJ válido");
             valid = false;
         } else {
@@ -143,7 +143,7 @@ public class SignupAssActivity extends AppCompatActivity {
             _emailText.setError(null);
         }
 
-        if (!ValidaCadastro.isValidCEP(cep)) {
+        if (!RegisterValidation.isValidCEP(cep)) {
             _cepText.setError("insira um CEP válido");
             valid = false;
         } else {
@@ -160,15 +160,15 @@ public class SignupAssActivity extends AppCompatActivity {
         if (password.isEmpty() || password.length() < 4 || password.length() > 10) {
             _passwordText.setError("deve ter entre 4 e 10 caracteres");
             valid = false;
-        } else if(!rPassword.equals(password)){
+        } else if (!rPassword.equals(password)) {
             _passwordText.setError("senha incompatível, tente novamente");
             valid = false;
-        } else{
+        } else {
             _passwordText.setError(null);
         }
 
         if (!valid) {
-            Toast erro = new Toast(getApplicationContext()).makeText(getApplicationContext(),"Erro no cadastro, verifique se todos os campos estão corretos", Toast.LENGTH_SHORT);
+            Toast erro = new Toast(getApplicationContext()).makeText(getApplicationContext(), "Erro no cadastro, verifique se todos os campos estão corretos", Toast.LENGTH_SHORT);
             erro.show();
         }
 

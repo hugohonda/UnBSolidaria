@@ -2,10 +2,9 @@ package br.unb.unbsolidaria;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,24 +13,14 @@ import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
-
-import br.unb.unbsolidaria.entidades.Oportunidade;
-import br.unb.unbsolidaria.entidades.Organizacao;
-
 /**
  * A login screen that offers login via email/password.
  */
 public class LoginActivity extends AppCompatActivity {
-    private FirebaseAnalytics mFirebaseAnalytics;
     private static final int REQUEST_SIGNUP = 0;
     private static final int RESULT_USER_OK = 5;
     private static final int RESULT_ASS_OK = 10;
-
+    private FirebaseAnalytics mFirebaseAnalytics;
     private EditText _emailText;
     private EditText _passwordText;
     private Button _loginButton;
@@ -77,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
         _loginButton.setEnabled(false);
 
-        final ProgressDialog progressDialog = ProgressDialog.show(this,null,"Autenticando...",true,false);
+        final ProgressDialog progressDialog = ProgressDialog.show(this, null, "Autenticando...", true, false);
 
         final String email = _emailText.getText().toString();
         final String password = _passwordText.getText().toString();
@@ -89,14 +78,14 @@ public class LoginActivity extends AppCompatActivity {
             public void run() {
                 // TODO: Implement your own authentication logic here.
                 // On complete call either onLoginSuccess or onLoginFailed
-                if(email.equals("aluno@unb.br")&&password.equals("aluno")){
+                if (email.equals("aluno@unb.br") && password.equals("aluno")) {
                     onLoginSuccess();
-                }else {
+                } else {
                     onLoginFailed();
                 }
                 progressDialog.dismiss();
             }
-        },3000);
+        }, 3000);
 
     }
 
@@ -122,13 +111,13 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onLoginSuccess() {
-        Intent intent = new Intent(this, ListaOportunidadesActivity.class);
+        Intent intent = new Intent(this, OpportunitiesListActivity.class);
         startActivity(intent);
         finish();
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getApplicationContext(),"Login Failed",Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG).show();
         _loginButton.setEnabled(true);
     }
 
@@ -141,25 +130,26 @@ public class LoginActivity extends AppCompatActivity {
         if (email.isEmpty()) {
             _emailText.setError(getString(R.string.error_field_required));
             valid = false;
-        } if(!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        }
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _emailText.setError(getString(R.string.error_invalid_email));
             valid = false;
-        } else{
+        } else {
             _emailText.setError(null);
         }
 
         if (password.isEmpty()) {
             _passwordText.setError(getString(R.string.error_field_required));
             valid = false;
-        } if(password.length() < 4 || password.length() > 10){
+        }
+        if (password.length() < 4 || password.length() > 10) {
             _passwordText.setError(getString(R.string.error_incorrect_password));
-        }else {
+        } else {
             _passwordText.setError(null);
         }
 
         return valid;
     }
-
 
 
 }

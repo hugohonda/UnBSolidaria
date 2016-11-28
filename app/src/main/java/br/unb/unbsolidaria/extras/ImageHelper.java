@@ -15,7 +15,7 @@ import android.graphics.RectF;
 
 
 public class ImageHelper {
-    public static Bitmap getRoundedCornerBitmap(Context context, Bitmap input, int pixels , int w , int h , boolean squareTL, boolean squareTR, boolean squareBL, boolean squareBR  ) {
+    public static Bitmap getRoundedCornerBitmap(Context context, Bitmap input, int pixels, int w, int h, boolean squareTL, boolean squareTR, boolean squareBL, boolean squareBR) {
 
         Bitmap output = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(output);
@@ -27,7 +27,7 @@ public class ImageHelper {
         final RectF rectF = new RectF(rect);
 
         //make sure that our rounded corner is scaled appropriately
-        final float roundPx = pixels*densityMultiplier;
+        final float roundPx = pixels * densityMultiplier;
 
         paint.setAntiAlias(true);
         canvas.drawARGB(0, 0, 0, 0);
@@ -36,21 +36,21 @@ public class ImageHelper {
 
 
         //draw rectangles over the corners we want to be square
-        if (squareTL ){
-            canvas.drawRect(0, 0, w/2, h/2, paint);
+        if (squareTL) {
+            canvas.drawRect(0, 0, w / 2, h / 2, paint);
         }
-        if (squareTR ){
-            canvas.drawRect(w/2, 0, w, h/2, paint);
+        if (squareTR) {
+            canvas.drawRect(w / 2, 0, w, h / 2, paint);
         }
-        if (squareBL ){
-            canvas.drawRect(0, h/2, w/2, h, paint);
+        if (squareBL) {
+            canvas.drawRect(0, h / 2, w / 2, h, paint);
         }
-        if (squareBR ){
-            canvas.drawRect(w/2, h/2, w, h, paint);
+        if (squareBR) {
+            canvas.drawRect(w / 2, h / 2, w, h, paint);
         }
 
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        canvas.drawBitmap(input, 0,0, paint);
+        canvas.drawBitmap(input, 0, 0, paint);
 
         return output;
     }

@@ -12,7 +12,7 @@ public class SignupChoiceActivity extends AppCompatActivity {
     private static final int RESULT_USER_OK = 5;
     private static final int RESULT_ASS_OK = 10;
 
-    private Button aluno;
+    private Button student;
     private Button ass;
 
     @Override
@@ -20,12 +20,12 @@ public class SignupChoiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup_choice);
 
-        aluno = (Button) findViewById(R.id.alunosignup);
-        aluno.setOnClickListener(new View.OnClickListener() {
+        student = (Button) findViewById(R.id.studentsignup);
+        student.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),SignupUserActivity.class);
-                startActivityForResult(intent,REQUEST_SIGNUP);
+                Intent intent = new Intent(getApplicationContext(), SignupUserActivity.class);
+                startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
 
@@ -33,8 +33,8 @@ public class SignupChoiceActivity extends AppCompatActivity {
         ass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),SignupAssActivity.class);
-                startActivityForResult(intent,REQUEST_SIGNUP);
+                Intent intent = new Intent(getApplicationContext(), SignupAssActivity.class);
+                startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
     }
@@ -44,12 +44,12 @@ public class SignupChoiceActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_USER_OK) {
-                setResult(RESULT_USER_OK,null);
+                setResult(RESULT_USER_OK, null);
                 this.finish();
-            } else if(resultCode == RESULT_ASS_OK) {
-                setResult(RESULT_ASS_OK,null);
+            } else if (resultCode == RESULT_ASS_OK) {
+                setResult(RESULT_ASS_OK, null);
                 this.finish();
-            }else if(resultCode == RESULT_CANCELED){
+            } else if (resultCode == RESULT_CANCELED) {
                 this.finish();
             }
         }

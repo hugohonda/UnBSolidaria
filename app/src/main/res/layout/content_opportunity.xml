@@ -9,8 +9,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".OportunidadeAcitivity"
-    tools:showIn="@layout/activity_oportunidade">
+    tools:context=".OpportunityAcitivity"
+    tools:showIn="@layout/activity_opportunity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Título"
-            android:id="@+id/oportunidadeActivity.Titulo"
+            android:id="@+id/oportunidadeActivity.title"
             android:layout_gravity="center"
             style="@style/Base.TextAppearance.AppCompat.Large" />
 
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
             android:text="Vagas: "
-            android:id="@+id/oportunidadeActivity_vagas" />
+            android:id="@+id/oportunidadeActivity_positions" />
 
         <Space
             android:layout_width="match_parent"

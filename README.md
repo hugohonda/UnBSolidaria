@@ -32,7 +32,7 @@ git branch
 ```
 Para criar um Branch e já começar a usá-lo:
 ```
-git checkout -b [nome_do_branch]
+git checkout -b [name_do_branch]
 ```
 
 ###_Merge_
