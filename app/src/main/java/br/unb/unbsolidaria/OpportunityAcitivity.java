@@ -1,5 +1,9 @@
 package br.unb.unbsolidaria;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -9,10 +13,19 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import br.unb.unbsolidaria.entities.Opportunity;
+import br.unb.unbsolidaria.extras.ImageHelper;
+import br.unb.unbsolidaria.persistency.Database;
 
 
 public class OpportunityAcitivity extends AppCompatActivity {
+
+    private float scale;
+    private int width;
+    private int height;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,24 +35,44 @@ public class OpportunityAcitivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         final int positions = 1;
 
+        int id = getIntent().getIntExtra("id", 0);
+
+        Database bd = Database.getInstance();
+        Opportunity opportunity = bd.getOpportunitie(id);
+
+        TextView title = (TextView) findViewById(R.id.tv_title);
+        ImageView logo = (ImageView) findViewById(R.id.iv_logo);
+        TextView description = (TextView) findViewById(R.id.tv_description);
+        TextView org = (TextView) findViewById(R.id.tv_org);
+        TextView local = (TextView) findViewById(R.id.tv_local);
+        TextView vagas = (TextView) findViewById(R.id.tv_vaga);
+        TextView start = (TextView) findViewById(R.id.tv_start);
+        TextView end = (TextView) findViewById(R.id.tv_end);
+
+
+        title.setText(opportunity.getTitle());
+        description.setText("Descrição: " + opportunity.getDescription());
+        org.setText("Organização: " + opportunity.getOrganization());
+        local.setText("Local: " + opportunity.getLocal());
+        vagas.setText("Vagas: " + opportunity.getVagas());
+        start.setText("Data de inicio: " + opportunity.getStartDate().toString());
+        end.setText("Data de Termino: " + opportunity.getEndDate().toString() );
+
+        scale = this.getResources().getDisplayMetrics().density;
+        width = this.getResources().getDisplayMetrics().widthPixels - (int) (14 * scale + 0.5f);
+        height = (width / 16) * 9;
+
+        Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), opportunity.getPhoto());
+        bitmap = ImageHelper.getRoundedCornerBitmap(this, bitmap, 4, width, height, false, false, true, true);
+        bitmap = Bitmap.createScaledBitmap(bitmap, width, height, false);
+
+        logo.setImageBitmap(bitmap);
+
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Opportunity");
 
-        TextView title = (TextView) findViewById(R.id.oportunidadeActivity_title);
-        title.setText("Professor de História do Brasil");
-        title.setGravity(Gravity.CENTER);
 
-        TextView description = (TextView) findViewById(R.id.oportunidadeActivity_desc);
-        description.setText("Precisamos de professor de história no colégio A para alunos do 3º ano do Ensino Médio. Os conteúdos são: \nA; \nB.\nQuem puder, entre em contato.");
 
-        TextView Organizacao = (TextView) findViewById(R.id.oportunidadeActivity_org);
-        Organizacao.setText("Organização: " + "SEE-DF");
-
-        TextView Localizacao = (TextView) findViewById(R.id.oportunidadeActivity_loc);
-        Localizacao.setText("Local: " + "Próximo a UnB");
-
-        TextView Vagas = (TextView) findViewById(R.id.oportunidadeActivity_positions);
-        Vagas.setText("Vagas: " + positions);
 
         final Button button = (Button) findViewById(R.id.oportunidadeActivity_actionConfirm);
         button.setOnClickListener(new View.OnClickListener() {
