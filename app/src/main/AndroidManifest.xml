@@ -30,6 +30,9 @@
             android:name=".SignupChoiceActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".OpportunityAcitivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity
             android:name=".SignupUserActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -39,15 +42,7 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".OpportunityAcitivity"
-            android:label="@string/title_activity_oportunidade_acitivity"
-            android:parentActivityName=".MainActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="br.unb.unbsolidaria.MainActivity" />
-        </activity>
+
         <activity
             android:name=".OpportunitiesListActivity">
         </activity>

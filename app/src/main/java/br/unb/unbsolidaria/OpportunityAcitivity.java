@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -52,21 +53,26 @@ public class OpportunityAcitivity extends AppCompatActivity {
 
         title.setText(opportunity.getTitle());
         description.setText("Descrição: " + opportunity.getDescription());
-        org.setText("Organização: " + opportunity.getOrganization());
+        org.setText("Organização: " + opportunity.getOrganization().getCommercialName());
         local.setText("Local: " + opportunity.getLocal());
         vagas.setText("Vagas: " + opportunity.getVagas());
-        start.setText("Data de inicio: " + opportunity.getStartDate().toString());
-        end.setText("Data de Termino: " + opportunity.getEndDate().toString() );
+        //TODO arrumar o Calendar
+        start.setText("Data de inicio: " + opportunity.getStartDate());
+        end.setText("Data de Termino: " + opportunity.getEndDate() );
 
         scale = this.getResources().getDisplayMetrics().density;
         width = this.getResources().getDisplayMetrics().widthPixels - (int) (14 * scale + 0.5f);
         height = (width / 16) * 9;
 
-        Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), opportunity.getPhoto());
-        bitmap = ImageHelper.getRoundedCornerBitmap(this, bitmap, 4, width, height, false, false, true, true);
-        bitmap = Bitmap.createScaledBitmap(bitmap, width, height, false);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            logo.setImageResource(opportunity.getPhoto());
+        } else {
+            Bitmap bitmap = BitmapFactory.decodeResource(this.getResources(), opportunity.getPhoto());
+            bitmap = Bitmap.createScaledBitmap(bitmap, width, height, false);
 
-        logo.setImageBitmap(bitmap);
+            bitmap = ImageHelper.getRoundedCornerBitmap(this, bitmap, 4, width, height, false, false, true, true);
+            logo.setImageBitmap(bitmap);
+        }
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Opportunity");

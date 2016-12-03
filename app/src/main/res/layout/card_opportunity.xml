@@ -73,7 +73,7 @@
             android:paddingTop="2dp"
             android:paddingLeft="16dp"
             android:textSize="14sp"
-            android:paddingBottom="24dp"
+            android:paddingBottom="2dp"
             android:text="Descrição:"/>
 
         <TextView
@@ -98,7 +98,7 @@
             android:paddingLeft="16dp"
             android:textSize="14sp"
             android:text="descrição"
-            android:paddingBottom="24dp"
+            android:paddingBottom="2dp"
             android:layout_below="@id/vaga"
             android:layout_toEndOf="@+id/descricao" />
 
@@ -113,7 +113,14 @@
             android:layout_below="@+id/top"
             android:layout_alignLeft="@id/tv_descricao" />
 
-
+        <Button
+            android:id="@+id/btn_seemore"
+            android:layout_below="@id/descricao"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ver Mais"/>
     </RelativeLayout>
 
 
