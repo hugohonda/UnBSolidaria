@@ -15,19 +15,21 @@ import retrofit2.http.Query;
  * Created by aurora on 03/12/16.
  */
 
+//Servico cliente REST que implementa requests para a entidade Organization
 public interface OrganizationService {
+    //Post de uma organizacao
     @POST("/organizations")
     Call<Organization> postOrganization(@Body Organization organization);
 
+    //Put de uma organizacao
     @PUT("/organizations/{id}")
     Call<Organization> putOrganization(@Body Organization organization, @Path("id") String id);
 
+    //Get lista de organizacoes
     @GET("/organizations")
     Call<List<Organization>> getOrganizations();
 
+    //Get lista de organizacoes por nome
     @GET("/organizations")
     Call<List<Organization>> getOrganizationByName(@Query("name") String name);
-
-    @PUT("/organization/{id}")
-    Call<Organization> putOrganization(@Path("id") String id);
 }

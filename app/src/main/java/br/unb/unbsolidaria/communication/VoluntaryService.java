@@ -11,10 +11,13 @@ import retrofit2.http.Path;
  * Created by aurora on 03/12/16.
  */
 
+//Servico cliente REST que implementa requests para a entidade Voluntary
 public interface VoluntaryService {
+    //Post de um voluntario
     @POST("/voluntaries")
     Call<Voluntary> postVoluntary(@Body Voluntary voluntary);
 
+    //Put de um voluntario com um id especifico
     @PUT("/voluntaries/{id}")
     Call<Voluntary> putVoluntary(@Body Voluntary voluntary, @Path("id") String id);
 }

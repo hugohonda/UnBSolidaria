@@ -92,10 +92,12 @@ public class SignupAssActivity extends AppCompatActivity implements Callback<Org
         String cep = _cepText.getText().toString();
         String website = _websiteText.getText().toString();
 
+        //Criar o servico da organizacao para fazer requests com essa entidade
         OrganizationService organizationService = RestCommunication.createService(OrganizationService.class);
         //TODO: Implementar campos que estão faltando para cadastro de uma organizacao e gerar id programaticamente
         Call<Organization> call = organizationService.postOrganization(
                 new Organization("id", cnpj, name, name, email, "", website, "", address, cep));
+        //Faz a chamada do request assincronamente
         call.enqueue(this);
     }
 
@@ -181,12 +183,14 @@ public class SignupAssActivity extends AppCompatActivity implements Callback<Org
 
     @Override
     public void onResponse(Call<Organization> call, Response<Organization> response) {
+        //Trata o caso que o request teve reply bem sucedido
         onSignupSuccess();
         progressDialog.dismiss();
     }
 
     @Override
     public void onFailure(Call<Organization> call, Throwable t) {
+        //Trata o caso de falha no request
         onSignupSuccess();
         progressDialog.dismiss();
     }

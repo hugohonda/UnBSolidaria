@@ -135,9 +135,11 @@ public class SignupUserActivity extends AppCompatActivity implements Callback<Vo
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
+        //Criar o servico do voluntario para fazer requests com essa entidade
         VoluntaryService voluntaryService = RestCommunication.createService(VoluntaryService.class);
         Call<Voluntary> call = voluntaryService.postVoluntary(
                 new Voluntary("id", cpf, name, name, "", email, "", "", matricula, "", "", false));
+        //Faz a chamada do request assincronamente
         call.enqueue(this);
     }
 
@@ -220,12 +222,14 @@ public class SignupUserActivity extends AppCompatActivity implements Callback<Vo
 
     @Override
     public void onResponse(Call<Voluntary> call, Response<Voluntary> response) {
+        //Trata o caso que o request teve reply bem sucedido
         onSignupSuccess();
         progressDialog.dismiss();
     }
 
     @Override
     public void onFailure(Call<Voluntary> call, Throwable t) {
+        //Trata o caso de falha no request
         onSignupSuccess();
         progressDialog.dismiss();
     }
