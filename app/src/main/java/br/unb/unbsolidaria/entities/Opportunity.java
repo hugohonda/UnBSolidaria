@@ -11,14 +11,13 @@ import java.util.Calendar;
 public class Opportunity {
     //TODO: discutir feature de aprovação por parte da Organização
     //não há entidade no banco de dados
-    private boolean requerAprovacao;
+    private boolean needsApproval;
     //ID da Opportunity
-    private int id;
+    private String id;
     //Local
     //TODO: classe Local para conter informações tais como CEP
     private String address;
     //Organização Resp.
-    //TODO: classe de Organização
     private Organization organization;
     //Quantidade de vagas
     private int nPositions;
@@ -41,7 +40,7 @@ public class Opportunity {
     public Opportunity() {
     }
 
-    public Opportunity(int id, String address, int nPositions, String title,
+    public Opportunity(String id, String address, int nPositions, String title,
                        String description, Calendar startDate, Calendar endDate,
                        Organization organization, int photo) {
         this.id = id;
@@ -55,7 +54,7 @@ public class Opportunity {
         this.photo = photo;
     }
 
-    public Opportunity(int id, String address, int nPositions, String title,
+    public Opportunity(String id, String address, int nPositions, String title,
                        String description, Calendar startDate, Calendar endDate,
                        Organization organization) {
         this.id = id;
@@ -69,11 +68,11 @@ public class Opportunity {
     }
 
 
-    public int getID() {
+    public String getID() {
         return id;
     }
 
-    public void setID(int id) {
+    public void setID(String id) {
         this.id = id;
     }
 

@@ -6,9 +6,8 @@ package br.unb.unbsolidaria.entities;
  */
 
 public class Organization {
-
     //ID Organization
-    private int id;
+    private String id;
     //CPF
     private String cnpj;
     //Nome juridico
@@ -34,7 +33,7 @@ public class Organization {
     public Organization() {
     }
 
-    public Organization(int id, String cnpj, String legalName,
+    public Organization(String id, String cnpj, String legalName,
                         String commercialName, String email, String phoneNumber,
                         String website, String description, String address,
                         String cep) {
@@ -52,11 +51,11 @@ public class Organization {
 
     //Getters e Setters
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

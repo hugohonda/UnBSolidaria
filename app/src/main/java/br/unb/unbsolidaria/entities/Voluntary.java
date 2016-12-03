@@ -15,7 +15,7 @@ import java.util.Calendar;
 //TODO: verificar se ha algo mais a ser adicionado
 public class Voluntary {
     //ID
-    private int id;
+    private String id;
     //CPF
     private String cpf;
     //Nome
@@ -44,7 +44,7 @@ public class Voluntary {
     public Voluntary() {
     }
 
-    public Voluntary(int id, String cpf, String name, String surname,
+    public Voluntary(String id, String cpf, String name, String surname,
                      Calendar birthDate, String email, String phoneNumber,
                      String description, String unbRegistrationNumber, String address,
                      String gender, boolean active) {
@@ -64,7 +64,7 @@ public class Voluntary {
 
     //getters
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
