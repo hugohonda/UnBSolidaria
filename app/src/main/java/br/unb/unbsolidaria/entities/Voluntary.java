@@ -1,10 +1,5 @@
 package br.unb.unbsolidaria.entities;
 
-//TODO: decidir se é viável o uso da livraria ICU. Razão: disponível somente a partir da API 24 (Android 7.0)
-//import android.icu.util.Calendar;
-
-import java.util.Calendar;
-
 /**
  * Created by lucasrez on 02/11/16.
  * - Non-public, non-static field names start with m
@@ -23,7 +18,7 @@ public class Voluntary {
     //Sobrenome
     private String surname;
     //Data de nascimento
-    private Calendar birthDate;
+    private String age;
     //email
     private String email;
     //telefone
@@ -45,14 +40,14 @@ public class Voluntary {
     }
 
     public Voluntary(String id, String cpf, String name, String surname,
-                     Calendar birthDate, String email, String phoneNumber,
+                     String age, String email, String phoneNumber,
                      String description, String unbRegistrationNumber, String address,
                      String gender, boolean active) {
         this.id = id;
         this.cpf = cpf;
         this.name = name;
         this.surname = surname;
-        this.birthDate = birthDate;
+        this.age = age;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.description = description;
@@ -88,8 +83,8 @@ public class Voluntary {
         this.surname = surname;
     }
 
-    public Calendar getBirthDate() {
-        return birthDate;
+    public String getAge() {
+        return age;
     }
 
     public String getEmail() {

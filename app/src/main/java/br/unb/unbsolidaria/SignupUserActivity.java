@@ -13,9 +13,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import br.unb.unbsolidaria.communication.RestCommunication;
+import br.unb.unbsolidaria.communication.VoluntaryService;
 import br.unb.unbsolidaria.entities.RegisterValidation;
+import br.unb.unbsolidaria.entities.Voluntary;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class SignupUserActivity extends AppCompatActivity {
+public class SignupUserActivity extends AppCompatActivity implements Callback<Voluntary> {
     private static final int RESULT_BACK = 2;
     private static final int RESULT_USER_OK = 5;
 
@@ -28,6 +34,8 @@ public class SignupUserActivity extends AppCompatActivity {
     private EditText _cpfText;
     private EditText _cepText;
     private EditText _matriculaText;
+
+    private ProgressDialog progressDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -119,26 +127,18 @@ public class SignupUserActivity extends AppCompatActivity {
         }
 
         _signupButton.setEnabled(false);
-
-        final ProgressDialog progressDialog = ProgressDialog.show(this, null, "Criando Conta...", true, false);
+        progressDialog = ProgressDialog.show(this, null, "Entrando em contato com os moderadores...", true, false);
 
         String name = _nameText.getText().toString();
+        String cpf = _cpfText.getText().toString();
+        String matricula = _matriculaText.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
 
-        // TODO: Implement your own signup logic here.
-
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onSignupSuccess or onSignupFailed
-                        // depending on success
-                        // por enquanto, preenchendo os campos sob as devidas regras dará sempre sucesso no signup
-                        onSignupSuccess();
-                        // onSignupFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
+        VoluntaryService voluntaryService = RestCommunication.createService(VoluntaryService.class);
+        Call<Voluntary> call = voluntaryService.postVoluntary(
+                new Voluntary("id", cpf, name, name, "", email, "", "", matricula, "", "", false));
+        call.enqueue(this);
     }
 
     public void onSignupSuccess() {
@@ -216,5 +216,17 @@ public class SignupUserActivity extends AppCompatActivity {
         }
 
         return valid;
+    }
+
+    @Override
+    public void onResponse(Call<Voluntary> call, Response<Voluntary> response) {
+        onSignupSuccess();
+        progressDialog.dismiss();
+    }
+
+    @Override
+    public void onFailure(Call<Voluntary> call, Throwable t) {
+        onSignupSuccess();
+        progressDialog.dismiss();
     }
 }

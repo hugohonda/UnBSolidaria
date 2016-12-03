@@ -17,12 +17,11 @@ import retrofit2.http.Query;
 
 public interface OrganizationService {
     @POST("/organizations")
-    Call<Organization> postVoluntary(@Body Organization organization);
+    Call<Organization> postOrganization(@Body Organization organization);
 
     @PUT("/organizations/{id}")
-    Call<Organization> putVoluntary(@Body Organization organization, @Path("id") String id);
+    Call<Organization> putOrganization(@Body Organization organization, @Path("id") String id);
 
-    Call<Organization> putVoluntary(@Path("id") String id);
     @GET("/organizations")
     Call<List<Organization>> getOrganizations();
 

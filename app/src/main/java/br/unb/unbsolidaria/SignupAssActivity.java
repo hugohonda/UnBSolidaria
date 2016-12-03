@@ -10,9 +10,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import br.unb.unbsolidaria.communication.OrganizationService;
+import br.unb.unbsolidaria.communication.RestCommunication;
+import br.unb.unbsolidaria.entities.Organization;
 import br.unb.unbsolidaria.entities.RegisterValidation;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-public class SignupAssActivity extends AppCompatActivity {
+public class SignupAssActivity extends AppCompatActivity implements Callback<Organization> {
     private static final int RESULT_BACK = 2;
     private static final int RESULT_ASS_OK = 10;
 
@@ -26,6 +32,8 @@ public class SignupAssActivity extends AppCompatActivity {
     private EditText _websiteText;
     private EditText _addrText;
     private EditText _cepText;
+
+    private ProgressDialog progressDialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,25 +82,21 @@ public class SignupAssActivity extends AppCompatActivity {
         }
 
         _signupButton.setEnabled(false);
+        progressDialog = ProgressDialog.show(this, null, "Entrando em contato com os moderadores...", true, false);
 
-        final ProgressDialog progressDialog = ProgressDialog.show(this, null, "Entrando em contato com os moderadores...", true, false);
-
+        String cnpj = _cnpjText.getText().toString();
         String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
         String password = _passwordText.getText().toString();
+        String address = _addrText.getText().toString();
+        String cep = _cepText.getText().toString();
+        String website = _websiteText.getText().toString();
 
-        // TODO: Implement your own signup logic here.
-
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onSignupSuccess or onSignupFailed
-                        // depending on success
-                        onSignupSuccess();
-                        // onSignupFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000);
+        OrganizationService organizationService = RestCommunication.createService(OrganizationService.class);
+        //TODO: Implementar campos que estão faltando para cadastro de uma organizacao e gerar id programaticamente
+        Call<Organization> call = organizationService.postOrganization(
+                new Organization("id", cnpj, name, name, email, "", website, "", address, cep));
+        call.enqueue(this);
     }
 
 
@@ -173,5 +177,17 @@ public class SignupAssActivity extends AppCompatActivity {
         }
 
         return valid;
+    }
+
+    @Override
+    public void onResponse(Call<Organization> call, Response<Organization> response) {
+        onSignupSuccess();
+        progressDialog.dismiss();
+    }
+
+    @Override
+    public void onFailure(Call<Organization> call, Throwable t) {
+        onSignupSuccess();
+        progressDialog.dismiss();
     }
 }
