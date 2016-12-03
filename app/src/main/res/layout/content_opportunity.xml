@@ -16,29 +16,36 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        style="@style/Base.TextAppearance.AppCompat.Large"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        style="@style/Base.TextAppearance.AppCompat.Large">
+        android:layout_alignParentStart="true">
 
         <TextView
+            android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Título"
-            android:id="@+id/oportunidadeActivity.title"
             android:layout_gravity="center"
             style="@style/Base.TextAppearance.AppCompat.Large" />
 
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:src="@null"
+            app:srcCompat="@drawable/launcher_logo"/>
         <Space
             android:layout_width="match_parent"
             android:layout_height="20dp" />
 
         <TextView
+            android:id="@+id/tv_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Descrição"
-            android:id="@+id/oportunidadeActivity_desc" />
+            android:text="Descrição" />
 
         <Space
             android:layout_width="match_parent"
@@ -46,25 +53,40 @@
             android:layout_gravity="center_horizontal" />
 
         <TextView
+            android:id="@+id/tv_org"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Organização: "
-            android:id="@+id/oportunidadeActivity_org" />
+            android:text="Organização: " />
 
         <TextView
+            android:id="@+id/tv_local"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Local: "
-            android:id="@+id/oportunidadeActivity_loc" />
+            android:text="Local: " />
 
         <TextView
+            android:id="@+id/tv_vaga"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:text="Vagas: "
-            android:id="@+id/oportunidadeActivity_positions" />
+            android:text="Vagas: " />
+
+        <TextView
+            android:id="@+id/tv_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Inicio: " />
+
+        <TextView
+            android:id="@+id/tv_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Fim: " />
+
 
         <Space
             android:layout_width="match_parent"

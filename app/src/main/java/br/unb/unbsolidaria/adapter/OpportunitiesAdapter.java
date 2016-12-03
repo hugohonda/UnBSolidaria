@@ -1,6 +1,7 @@
 package br.unb.unbsolidaria.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
@@ -8,12 +9,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
+import br.unb.unbsolidaria.OpportunityAcitivity;
 import br.unb.unbsolidaria.R;
+import br.unb.unbsolidaria.SplashActivity;
 import br.unb.unbsolidaria.entities.Opportunity;
 import br.unb.unbsolidaria.extras.ImageHelper;
 
@@ -48,7 +53,7 @@ public class OpportunitiesAdapter extends RecyclerView.Adapter<OpportunitiesAdap
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
 
         holder.tvTitulo.setText(mList.get(position).getTitle());
         holder.tvLocal.setText(mList.get(position).getLocal());
@@ -65,6 +70,14 @@ public class OpportunitiesAdapter extends RecyclerView.Adapter<OpportunitiesAdap
             holder.ivOrg.setImageBitmap(bitmap);
         }
 
+        holder.btnSeeMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(mContext, OpportunityAcitivity.class);
+                intent.putExtra("id",mList.get(position).getID());
+                mContext. startActivity(intent);
+            }
+        });
 
     }
 
@@ -91,6 +104,7 @@ public class OpportunitiesAdapter extends RecyclerView.Adapter<OpportunitiesAdap
         public TextView tvLocal;
         public TextView tvVaga;
         public TextView tvdescription;
+        public Button btnSeeMore;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -100,13 +114,13 @@ public class OpportunitiesAdapter extends RecyclerView.Adapter<OpportunitiesAdap
             tvLocal = (TextView) itemView.findViewById(R.id.tv_local);
             tvVaga = (TextView) itemView.findViewById(R.id.tv_vaga);
             tvdescription = (TextView) itemView.findViewById(R.id.tv_descricao);
+            btnSeeMore = (Button) itemView.findViewById(R.id.btn_seemore);
 
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-
         }
     }
 }

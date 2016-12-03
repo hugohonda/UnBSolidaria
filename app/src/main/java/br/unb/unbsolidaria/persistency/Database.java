@@ -184,4 +184,8 @@ public class Database {
     public List<Opportunity> getOpportunities() {
         return opportunities;
     }
+
+    public Opportunity getOpportunitie(int id ){
+        return opportunities.get(id);
+    }
 }
