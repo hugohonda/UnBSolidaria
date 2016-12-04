@@ -75,7 +75,7 @@ public class OpportunitiesAdapter extends RecyclerView.Adapter<OpportunitiesAdap
             public void onClick(View v) {
                 Intent intent=new Intent(mContext, OpportunityAcitivity.class);
                 intent.putExtra("id",mList.get(position).getID());
-                mContext. startActivity(intent);
+                mContext.startActivity(intent);
             }
         });
 

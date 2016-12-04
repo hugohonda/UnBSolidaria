@@ -1,15 +1,12 @@
 package br.unb.unbsolidaria;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,13 +49,13 @@ public class OpportunityAcitivity extends AppCompatActivity {
 
 
         title.setText(opportunity.getTitle());
-        description.setText("Descrição: " + opportunity.getDescription());
-        org.setText("Organização: " + opportunity.getOrganization().getCommercialName());
-        local.setText("Local: " + opportunity.getLocal());
-        vagas.setText("Vagas: " + opportunity.getVagas());
-        //TODO arrumar o Calendar
-        start.setText("Data de inicio: " + opportunity.getStartDate());
-        end.setText("Data de Termino: " + opportunity.getEndDate() );
+        description.setText( getString(R.string.ov_description, opportunity.getDescription()) );
+        org.setText( getString(R.string.ov_org, opportunity.getOrganization().getCommercialName()) );
+        local.setText( getString(R.string.ov_local, opportunity.getLocal()) );
+        vagas.setText( getString(R.string.ov_vagas, opportunity.getVagas()) );
+
+        start.setText( getString(R.string.ov_dateStart, opportunity.getFormattedDate(Opportunity.oDate.start)) );
+        end.setText( getString(R.string.ov_dateEnd, opportunity.getFormattedDate(Opportunity.oDate.end)) );
 
         scale = this.getResources().getDisplayMetrics().density;
         width = this.getResources().getDisplayMetrics().widthPixels - (int) (14 * scale + 0.5f);
@@ -76,7 +73,6 @@ public class OpportunityAcitivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Opportunity");
-
 
 
 
@@ -106,6 +102,9 @@ public class OpportunityAcitivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.oportunidade_share:
                 Snackbar.make(findViewById(android.R.id.content), "Compartilhar Opportunity", Snackbar.LENGTH_SHORT).show();
+                return true;
+            case android.R.id.home:
+                this.finish();
                 return true;
             default:
                 // If we got here, the user's action was not recognized.

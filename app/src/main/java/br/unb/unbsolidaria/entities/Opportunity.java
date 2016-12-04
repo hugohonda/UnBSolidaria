@@ -33,6 +33,9 @@ public class Opportunity {
     //Data de Fim
     private Calendar endDate;
 
+    public enum oDate {
+        start, end;
+    }
 
     //// TODO: 24/11/2016 modificar quando for pegar a foto do server
     //para teste pelo res
@@ -68,6 +71,15 @@ public class Opportunity {
         this.organization = organization;
     }
 
+    public String getFormattedDate (oDate dateType){
+        switch (dateType){
+            case start:
+                return String.format("%1$td/%1$tm/%1$tY", this.startDate);
+            case end:
+                return String.format("%1$td/%1$tm/%1$tY", this.endDate);
+        }
+        return "";
+    }
 
     public int getID() {
         return id;

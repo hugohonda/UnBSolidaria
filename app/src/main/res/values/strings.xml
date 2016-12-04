@@ -31,6 +31,15 @@
 
     <!-- Organization-->
     <string name="co_tDateFormat">"%1$d/%2$d/%3$d"</string>
+    <!-- Strings related to Opportunities View (ov) -->
+    <!-- Changes according to good TextView pratices. See: http://stackoverflow.com/a/33165040-->
+    <string name="ov_description">"Descrição: %1$s"</string>
+    <string name="ov_org">"Organização: %1$s"</string>
+    <string name="ov_local">"Local: %1$s"</string>
+    <string name="ov_vagas">"Vagas: %1$s"</string>
+    <string name="ov_dateStart">"Data de Início: %1$s"</string>
+    <string name="ov_dateEnd">"Data de Término: %1$s"</string>
+    
 
     <string name="title_activity_main">MainActivity</string>
 
