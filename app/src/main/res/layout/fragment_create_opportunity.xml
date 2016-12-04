@@ -3,15 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <!--tools:context="br.unb.unbsolidaria.CreateOpportunity" -->
+    <!--tools:context="br.unb.unbsolidaria.organization.CreateOpportunity" -->
 
     <RelativeLayout
         android:id="@+id/content_create_opportunity"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingTop="24dp"
+        android:paddingLeft="24dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context="br.unb.unbsolidaria.CreateOpportunity"
-        tools:showIn="@layout/fragment_create_opportunity">
+        tools:context="br.unb.unbsolidaria.organization.CreateOpportunity"
+        tools:showIn="@layout/fragment_create_opportunity"
+        android:paddingRight="24dp">
 
         <TextView
             android:text="Título:"
@@ -61,7 +64,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:id="@+id/co_etDateStart"
-            android:inputType="date"
+            android:inputType=""
             android:layout_alignBaseline="@+id/co_tvDateStart"
             android:layout_alignBottom="@+id/co_tvDateStart"
             android:layout_alignParentEnd="true"
@@ -77,7 +80,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:id="@+id/co_etDateEnd"
-            android:inputType="date"
+            android:inputType=""
             android:layout_marginRight="0dp"
             android:layout_alignBaseline="@+id/co_tvDateEnd"
             android:layout_alignBottom="@+id/co_tvDateEnd"

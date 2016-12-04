@@ -44,7 +44,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".OpportunitiesListActivity"></activity>
         <activity
-            android:name=".OrganizationScreen"
+            android:name=".organization.OrganizationScreen"
             android:label="@string/title_activity_organization_screen"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true">

@@ -4,11 +4,11 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/orgv_sbNewsItem"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_news"
             android:title="Notícias" />
         <item
             android:id="@+id/orgv_sbCreateOpportunityItem"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_add"
             android:title="Criar Oportunidade" />
         <item
             android:id="@+id/orgv_sbViewOpportunityItem"

@@ -20,6 +20,6 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_organization_screen"
-        app:menu="@menu/activity_organization_screen_drawer" />
+        app:menu="@menu/organization_sidebar" />
 
 </android.support.v4.widget.DrawerLayout>

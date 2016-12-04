@@ -1,7 +1,6 @@
-package br.unb.unbsolidaria;
+package br.unb.unbsolidaria.organization;
 
 import android.support.v4.app.Fragment;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
@@ -13,24 +12,26 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+
+import br.unb.unbsolidaria.R;
 
 public class OrganizationScreen extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, CreateOpportunity.OnFragmentInteractionListener {
+        implements NavigationView.OnNavigationItemSelectedListener {
 
-    FragmentManager fragmentManager;
-    int lastSelectedItem;
+    private FragmentManager fragmentManager;
+    private int lastSelectedItem;
+    private Toolbar mActivityToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organization_screen);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        mActivityToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mActivityToolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, mActivityToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -83,39 +84,41 @@ public class OrganizationScreen extends AppCompatActivity
         int id = item.getItemId();
         Fragment userFragment;
         FragmentTransaction ft;
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        if (lastSelectedItem == id)
+        if (lastSelectedItem == id){
+            drawer.closeDrawer(GravityCompat.START);
             return true;
-
-        lastSelectedItem = id;
-        ft = fragmentManager.beginTransaction();
-
-        if (id == R.id.orgv_sbNewsItem) {
-            userFragment = fragmentManager.findFragmentById(R.id.co_frameLayout);
-            if (userFragment == null){
-                userFragment = new CreateOpportunity();
-            }
-            ft.replace(R.id.co_frameLayout, userFragment);
-            ft.commit();
-            Toast.makeText(this, "hello toast", Toast.LENGTH_SHORT).show();
-
-        } else if (id == R.id.orgv_sbCreateOpportunityItem) {
-
-        } else if (id == R.id.orgv_sbViewOpportunityItem) {
-
-        } else if (id == R.id.orgv_sbEditProfileItem) {
-
-        } else if (id == R.id.orgv_sbExitItem) {
-
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ft = fragmentManager.beginTransaction();
+        userFragment = fragmentManager.findFragmentById(R.id.co_frameLayout);
+        if (userFragment != null){
+            ft.remove(userFragment);
+        }
+        lastSelectedItem = id;
+
+        if (id == R.id.orgv_sbNewsItem) {
+            mActivityToolbar.setTitle("Novidades");
+            ft.commit();
+        } else if (id == R.id.orgv_sbCreateOpportunityItem) {
+            userFragment = new CreateOpportunity();
+            ft.add(R.id.co_frameLayout, userFragment).commit();
+            mActivityToolbar.setTitle("Criar Oportunidade");
+
+        } else if (id == R.id.orgv_sbViewOpportunityItem) {
+            userFragment = new ViewOpportunities();
+            ft.add(R.id.co_frameLayout, userFragment).commit();
+            mActivityToolbar.setTitle("Suas Oportunidades");
+
+        } else if (id == R.id.orgv_sbEditProfileItem) {
+            userFragment = new EditProfile();
+            ft.add(R.id.co_frameLayout, userFragment).commit();
+            mActivityToolbar.setTitle("Editar Perfil");
+        } else if (id == R.id.orgv_sbExitItem) {
+        }
+
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-        //TODO: Still have to learn Fragment things
     }
 }
