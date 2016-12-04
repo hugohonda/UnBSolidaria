@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/orgv_sbNewsItem"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Notícias" />
+        <item
+            android:id="@+id/orgv_sbCreateOpportunityItem"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Criar Oportunidade" />
+        <item
+            android:id="@+id/orgv_sbViewOpportunityItem"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Visualizar Oportunidades" />
+        <item
+            android:id="@+id/orgv_sbEditProfileItem"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Editar Perfil" />
+        <item
+            android:id="@+id/orgv_sbExitItem"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Sair" />
+    </group>
+
+</menu>

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">UnBSolidaria</string>
 
-    <!-- Strings related to login -->
+    <!-- Login -->
     <string name="logo">Logo</string>
     <string name="user">Voluntário</string>
     <string name="ass">Associação</string>
@@ -28,6 +28,10 @@
     <string name="permission_rationale">"Permissão de acesso aos contatos necessária para auto-completar
         email."
     </string>
+
+    <!-- Organization-->
+    <string name="co_tDateFormat">"%1$d/%2$d/%3$d"</string>
+
     <string name="title_activity_main">MainActivity</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -37,4 +41,5 @@
 
     <string name="title_activity_oportunidade_acitivity">OportunidadeActivity</string>
     <string name="action_compartilhar">Compartilhar</string>
+    <string name="title_activity_organization_screen">OrganizationScreen</string>
 </resources>
