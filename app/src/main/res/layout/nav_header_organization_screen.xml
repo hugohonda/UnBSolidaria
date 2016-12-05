@@ -26,6 +26,7 @@
         android:layout_width="100dp" />
 
     <TextView
+        android:id="@+id/ov_navTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"

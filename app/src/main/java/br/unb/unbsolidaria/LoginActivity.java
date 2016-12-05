@@ -11,7 +11,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.RuntimeExecutionException;
 import com.google.firebase.analytics.FirebaseAnalytics;
+
+import br.unb.unbsolidaria.entities.User;
+import br.unb.unbsolidaria.organization.OrganizationScreen;
 
 /**
  * A login screen that offers login via email/password.
@@ -25,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText _passwordText;
     private Button _loginButton;
     private TextView _signupLink;
+
+    public static final String LOGIN_MESSAGE = "br.unb.unbsolidaria.LOADUSER";
 
 
     @Override
@@ -76,10 +82,11 @@ public class LoginActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                // TODO: Implement your own authentication logic here.
-                // On complete call either onLoginSuccess or onLoginFailed
-                if (email.equals("aluno@unb.br") && password.equals("aluno")) {
-                    onLoginSuccess();
+                // TODO: Implement REST OATH here
+                // local user account DB (see .persistency.Database)
+                User user = User.getUserFromCredentials(email, password);
+                if ( user != null ){
+                    onLoginSuccess(user);
                 } else {
                     onLoginFailed();
                 }
@@ -95,11 +102,9 @@ public class LoginActivity extends AppCompatActivity {
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_USER_OK) {
 
-                // TODO: Implement successful signup logic here
-                // By default we just finish the Activity and log them in automatically
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);
-                this.finish();
+                //Intent intent = new Intent(this, MainActivity.class);
+                //startActivity(intent);
+                //this.finish();
             }
         }
     }
@@ -110,14 +115,26 @@ public class LoginActivity extends AppCompatActivity {
         moveTaskToBack(true);
     }
 
-    public void onLoginSuccess() {
-        Intent intent = new Intent(this, OpportunitiesListActivity.class);
-        startActivity(intent);
+    public void onLoginSuccess(User user) {
+        Intent nextIntent;
+
+        switch (user.getType()){
+            case organization:
+                nextIntent = new Intent(this, OrganizationScreen.class);
+                break;
+            case voluntary:
+                nextIntent = new Intent(this, OpportunitiesListActivity.class);
+                break;
+            default:
+                throw new RuntimeException("User type " + user.getType() + "  login handler does not exist");
+        }
+        nextIntent.putExtra(LOGIN_MESSAGE, user);
+        startActivity(nextIntent);
         finish();
     }
 
     public void onLoginFailed() {
-        Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), getString(R.string.error_login_auth), Toast.LENGTH_LONG).show();
         _loginButton.setEnabled(true);
     }
 

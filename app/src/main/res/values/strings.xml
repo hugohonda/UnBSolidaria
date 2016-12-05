@@ -25,6 +25,7 @@
     <string name="error_invalid_password">Essa senha é muito pequena</string>
     <string name="error_incorrect_password">Senha incorreta</string>
     <string name="error_field_required">Campo necessário</string>
+    <string name="error_login_auth">O Login Falhou.</string>
     <string name="permission_rationale">"Permissão de acesso aos contatos necessária para auto-completar
         email."
     </string>

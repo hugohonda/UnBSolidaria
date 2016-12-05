@@ -10,6 +10,7 @@ import br.unb.unbsolidaria.R;
 import br.unb.unbsolidaria.entities.Opportunity;
 import br.unb.unbsolidaria.entities.Organization;
 import br.unb.unbsolidaria.entities.Tag;
+import br.unb.unbsolidaria.entities.User;
 import br.unb.unbsolidaria.entities.Voluntary;
 
 /**
@@ -24,6 +25,7 @@ public class Database {
     private List<Organization> organizacoes;
     private List<Tag> tags;
     private List<Opportunity> opportunities;
+    private List<User> users;
 
 
     private Database() {
@@ -147,6 +149,11 @@ public class Database {
                 new Opportunity(18, "Lago Norte", 3, "DF Sutentável", "Trabalhos voluntários de sustentabilidade", getCalendar("01/01/2017"), getCalendar("01/02/2017"), organizacoes.get(18)),
                 new Opportunity(19, "Asa Sul", 1, "Cozinha para todos", "Trabalhos voluntários para levar comida aos pobres", getCalendar("01/01/2017"), getCalendar("01/02/2017"), organizacoes.get(19))
         );
+
+        users = Arrays.asList(
+                new User(organizacoes.get(0).getEmail(), "12345", User.UserType.organization, 0),
+                new User(voluntaries.get(0).getEmail(), "69880", User.UserType.voluntary, 0)
+        );
     }
 
     public static Database getInstance() {
@@ -184,6 +191,8 @@ public class Database {
     public List<Opportunity> getOpportunities() {
         return opportunities;
     }
+
+    public List<User> getUsers(){return users;}
 
     public Opportunity getOpportunitie(int id ){
         return opportunities.get(id);
