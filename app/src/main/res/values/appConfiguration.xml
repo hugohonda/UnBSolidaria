@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Opportunity Creation -->
+    <integer name="co_minDescriptionLength">5</integer>
+    <integer name="co_maxDescriptionLength">150</integer>
+    <integer name="co_minTitleLength">10</integer>
+</resources>

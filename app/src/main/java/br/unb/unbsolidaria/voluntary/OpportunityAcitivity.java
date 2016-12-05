@@ -1,4 +1,4 @@
-package br.unb.unbsolidaria;
+package br.unb.unbsolidaria.voluntary;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -14,9 +14,12 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import br.unb.unbsolidaria.R;
 import br.unb.unbsolidaria.entities.Opportunity;
+import br.unb.unbsolidaria.entities.Voluntary;
 import br.unb.unbsolidaria.extras.ImageHelper;
 import br.unb.unbsolidaria.persistency.Database;
+import br.unb.unbsolidaria.voluntary.OpportunitiesListActivity;
 
 
 public class OpportunityAcitivity extends AppCompatActivity {
@@ -25,20 +28,21 @@ public class OpportunityAcitivity extends AppCompatActivity {
     private int width;
     private int height;
 
+    private Voluntary loggedVoluntary;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opportunity);
         Toolbar toolbar = (Toolbar) findViewById(R.id.oportunidateToolbar);
         setSupportActionBar(toolbar);
-        final int positions = 1;
 
+        loggedVoluntary = (Voluntary)getIntent().getSerializableExtra(OpportunitiesListActivity.VIEW_MESSAGE);
         int id = getIntent().getIntExtra("id", 0);
 
         Database bd = Database.getInstance();
         Opportunity opportunity = bd.getOpportunitie(id);
 
-        TextView title = (TextView) findViewById(R.id.tv_title);
         ImageView logo = (ImageView) findViewById(R.id.iv_logo);
         TextView description = (TextView) findViewById(R.id.tv_description);
         TextView org = (TextView) findViewById(R.id.tv_org);
@@ -48,7 +52,6 @@ public class OpportunityAcitivity extends AppCompatActivity {
         TextView end = (TextView) findViewById(R.id.tv_end);
 
 
-        title.setText(opportunity.getTitle());
         description.setText( getString(R.string.ov_description, opportunity.getDescription()) );
         org.setText( getString(R.string.ov_org, opportunity.getOrganization().getCommercialName()) );
         local.setText( getString(R.string.ov_local, opportunity.getLocal()) );
@@ -72,18 +75,25 @@ public class OpportunityAcitivity extends AppCompatActivity {
         }
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Opportunity");
+        getSupportActionBar().setTitle(opportunity.getTitle());
 
 
 
         final Button button = (Button) findViewById(R.id.oportunidadeActivity_actionConfirm);
+        if ( opportunity.getVagas() <= 0 )
+            button.setEnabled(false);
+
+        // no user is logged
+        if(loggedVoluntary == null){
+            button.setEnabled(false);
+            button.setVisibility(View.GONE);
+        }
+
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 //TODO: Adicionar algum mecanismo para gerenciar eventos em que o usuário se candidatou (Activity, pop-up,...)
-                if (positions > 0) {
-                    Snackbar.make(findViewById(android.R.id.content), "Participação Confirmada!", Snackbar.LENGTH_SHORT).show();
-                    return;
-                }
+                Snackbar.make(findViewById(android.R.id.content), "Participação Confirmada!", Snackbar.LENGTH_SHORT).show();
+                return;
             }
         });
 

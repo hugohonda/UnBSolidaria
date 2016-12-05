@@ -11,11 +11,13 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.RuntimeExecutionException;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import br.unb.unbsolidaria.entities.User;
+import br.unb.unbsolidaria.entities.Voluntary;
 import br.unb.unbsolidaria.organization.OrganizationScreen;
+import br.unb.unbsolidaria.voluntary.OpportunitiesListActivity;
+import br.unb.unbsolidaria.voluntary.VoluntaryScreen;
 
 /**
  * A login screen that offers login via email/password.
@@ -101,10 +103,9 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_SIGNUP) {
             if (resultCode == RESULT_USER_OK) {
-
-                //Intent intent = new Intent(this, MainActivity.class);
-                //startActivity(intent);
-                //this.finish();
+                Intent intent = new Intent(this, Voluntary.class);
+                startActivity(intent);
+                this.finish();
             }
         }
     }
@@ -123,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
                 nextIntent = new Intent(this, OrganizationScreen.class);
                 break;
             case voluntary:
-                nextIntent = new Intent(this, OpportunitiesListActivity.class);
+                nextIntent = new Intent(this, VoluntaryScreen.class);
                 break;
             default:
                 throw new RuntimeException("User type " + user.getType() + "  login handler does not exist");

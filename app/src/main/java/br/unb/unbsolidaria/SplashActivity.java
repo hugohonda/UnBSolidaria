@@ -3,6 +3,9 @@ package br.unb.unbsolidaria;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
+
+import br.unb.unbsolidaria.persistency.Database;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -19,8 +22,18 @@ public class SplashActivity extends AppCompatActivity {
         }
         // Retirar
 
+        //Load local database contents
+        Database.getInstance().loadLocalState(getApplicationContext());
+
+    }
+
+    @Override
+    protected void onResume (){
+        super.onResume();
+
+        //Start LoginActivity
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
-        finish();
     }
+
 }

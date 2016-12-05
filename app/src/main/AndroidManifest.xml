@@ -30,7 +30,7 @@
             android:name=".SignupChoiceActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".OpportunityAcitivity"
+            android:name=".voluntary.OpportunityAcitivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SignupUserActivity"
@@ -42,9 +42,15 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".OpportunitiesListActivity"></activity>
+        <activity android:name=".voluntary.OpportunitiesListActivity"></activity>
         <activity
             android:name=".organization.OrganizationScreen"
+            android:label="@string/title_activity_organization_screen"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".voluntary.VoluntaryScreen"
             android:label="@string/title_activity_organization_screen"
             android:theme="@style/AppTheme.NoActionBar"
             android:exported="true">

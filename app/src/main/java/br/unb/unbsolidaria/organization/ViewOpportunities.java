@@ -45,9 +45,9 @@ public class ViewOpportunities extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         Database bd = Database.getInstance();
-        mList = bd.getOpportunities();
+        mList = bd.getOpportunitiesList();
 
-        mAdapter = new OpportunitiesAdapter(getActivity(), mList);
+        mAdapter = new OpportunitiesAdapter(getActivity(), mList, null);
         mRecyclerView.setAdapter(mAdapter);
 
         return parentView;

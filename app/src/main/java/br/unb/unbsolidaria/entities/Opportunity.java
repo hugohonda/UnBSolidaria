@@ -2,13 +2,15 @@ package br.unb.unbsolidaria.entities;
 
 //import android.icu.util.Calendar;
 
+import java.io.Serializable;
 import java.util.Calendar;
+import java.util.LinkedList;
 
 /**
  * Created by lucasrez on 02/11/16.
  */
 
-public class Opportunity {
+public class Opportunity implements Serializable {
     //TODO: discutir feature de aprovação por parte da Organização
     //não há entidade no banco de dados
     private boolean requerAprovacao;
@@ -18,7 +20,6 @@ public class Opportunity {
     //TODO: classe Local para conter informações tais como CEP
     private String address;
     //Organização Resp.
-    //TODO: classe de Organização
     private Organization organization;
     //Quantidade de vagas
     private int nPositions;
@@ -32,6 +33,8 @@ public class Opportunity {
     private Calendar startDate;
     //Data de Fim
     private Calendar endDate;
+
+    private LinkedList<Voluntary> approvedVoluntaries = null;
 
     public enum oDate {
         start, end;

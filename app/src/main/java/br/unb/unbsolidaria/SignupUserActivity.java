@@ -14,6 +14,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import br.unb.unbsolidaria.entities.RegisterValidation;
+import br.unb.unbsolidaria.entities.User;
+import br.unb.unbsolidaria.entities.Voluntary;
+import br.unb.unbsolidaria.persistency.Database;
 
 public class SignupUserActivity extends AppCompatActivity {
     private static final int RESULT_BACK = 2;
@@ -144,6 +147,10 @@ public class SignupUserActivity extends AppCompatActivity {
     public void onSignupSuccess() {
         Toast.makeText(getApplicationContext(), "Conta criada com Sucesso!", Toast.LENGTH_LONG).show();
         _signupButton.setEnabled(true);
+
+        int user_id = Database.getInstance().getExtraVoluntaryCount() + 1;
+        //Voluntary theVoluntary = new Voluntary(user_id, _cpfText, _nameText, "", Database.getInstance().getCalendar("21/05/1994"), _emailText, "", "", _matriculaText, "", "", "M", true);
+        //User theUser = new User("admin", "admin", User.UserType.voluntary, 0);
         setResult(RESULT_USER_OK, null);
         finish();
     }

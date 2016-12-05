@@ -12,14 +12,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.List;
 
-import br.unb.unbsolidaria.OpportunityAcitivity;
+import br.unb.unbsolidaria.voluntary.OpportunitiesListActivity;
+import br.unb.unbsolidaria.voluntary.OpportunityAcitivity;
 import br.unb.unbsolidaria.R;
-import br.unb.unbsolidaria.SplashActivity;
 import br.unb.unbsolidaria.entities.Opportunity;
+import br.unb.unbsolidaria.entities.Voluntary;
 import br.unb.unbsolidaria.extras.ImageHelper;
 
 /**
@@ -35,9 +35,12 @@ public class OpportunitiesAdapter extends RecyclerView.Adapter<OpportunitiesAdap
     private int width;
     private int height;
 
-    public OpportunitiesAdapter(Context c, List<Opportunity> l) {
+    private Voluntary mLoggedUser;
+
+    public OpportunitiesAdapter(Context c, List<Opportunity> l, Voluntary loggedUser) {
         mContext = c;
         mList = l;
+        mLoggedUser = loggedUser;
         mLayoutInflater = (LayoutInflater) c.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         scale = mContext.getResources().getDisplayMetrics().density;
@@ -74,7 +77,10 @@ public class OpportunitiesAdapter extends RecyclerView.Adapter<OpportunitiesAdap
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(mContext, OpportunityAcitivity.class);
-                intent.putExtra("id",mList.get(position).getID());
+                intent.putExtra("id",position);
+                if (mLoggedUser != null){
+                    intent.putExtra(OpportunitiesListActivity.VIEW_MESSAGE, mLoggedUser);
+                }
                 mContext.startActivity(intent);
             }
         });

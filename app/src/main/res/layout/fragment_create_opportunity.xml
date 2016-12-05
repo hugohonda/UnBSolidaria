@@ -16,6 +16,38 @@
         tools:showIn="@layout/fragment_create_opportunity"
         android:paddingRight="24dp">
 
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/co_etLocal"
+            android:inputType="textPostalAddress"
+            android:layout_alignBaseline="@+id/co_tvLocal"
+            android:layout_alignBottom="@+id/co_tvLocal"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/co_tvLocal"
+            android:layout_marginStart="4dp"
+            android:cursorVisible="false"
+            android:editable="false"
+            android:hapticFeedbackEnabled="false"
+            android:enabled="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:id="@+id/co_etSpots"
+            android:layout_alignBaseline="@+id/co_tvSpots"
+            android:layout_alignBottom="@+id/co_tvSpots"
+            android:layout_alignParentEnd="true"
+            android:layout_toRightOf="@+id/co_tvSpots"
+            android:layout_marginStart="4dp"
+            android:cursorVisible="false"
+            android:editable="false"
+            android:hapticFeedbackEnabled="false"
+            android:enabled="true"
+            android:inputType="number" />
+
         <TextView
             android:text="Título:"
             android:layout_width="wrap_content"
@@ -33,9 +65,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/co_btSend"
             android:layout_marginLeft="153dp"
-            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="68dp" />
+            android:layout_below="@+id/co_etDescription"
+            android:layout_marginTop="20dp" />
 
         <TextView
             android:text="Data de Término:"
@@ -54,10 +86,10 @@
             android:layout_height="wrap_content"
             android:id="@+id/co_tvDateStart"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_marginTop="20dp"
-            android:layout_below="@+id/co_etTitle"
+            android:layout_marginTop="23dp"
             android:layout_alignStart="@+id/co_tvTitle"
-            android:layout_alignEnd="@+id/co_tvDateEnd" />
+            android:layout_alignEnd="@+id/co_tvDateEnd"
+            android:layout_below="@+id/co_tvSpots" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -81,7 +113,6 @@
             android:ems="10"
             android:id="@+id/co_etDateEnd"
             android:inputType=""
-            android:layout_marginRight="0dp"
             android:layout_alignBaseline="@+id/co_tvDateEnd"
             android:layout_alignBottom="@+id/co_tvDateEnd"
             android:layout_alignParentEnd="true"
@@ -120,6 +151,30 @@
             android:layout_centerHorizontal="true"
             android:layout_below="@+id/co_tvDateEnd"
             android:layout_marginTop="35dp" />
+
+        <TextView
+            android:text="Local:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/co_etTitle"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_alignParentStart="true"
+            android:id="@+id/co_tvLocal"
+            android:layout_alignEnd="@+id/co_tvDateEnd"
+            android:layout_alignStart="@+id/co_tvTitle"
+            android:layout_marginTop="20dp" />
+
+        <TextView
+            android:text="Vagas:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/co_tvLocal"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_alignParentStart="true"
+            android:id="@+id/co_tvSpots"
+            android:layout_alignEnd="@+id/co_tvDateEnd"
+            android:layout_alignStart="@+id/co_tvTitle"
+            android:layout_marginTop="22dp" />
 
     </RelativeLayout>
 

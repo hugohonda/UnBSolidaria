@@ -1,12 +1,11 @@
-package br.unb.unbsolidaria.organization;
+package br.unb.unbsolidaria.voluntary;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.provider.ContactsContract;
-import android.support.v4.app.Fragment;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,14 +16,19 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import br.unb.unbsolidaria.LoginActivity;
 import br.unb.unbsolidaria.R;
 import br.unb.unbsolidaria.entities.Organization;
 import br.unb.unbsolidaria.entities.User;
+import br.unb.unbsolidaria.entities.Voluntary;
+import br.unb.unbsolidaria.organization.CreateOpportunity;
+import br.unb.unbsolidaria.organization.EditProfile;
+import br.unb.unbsolidaria.organization.ViewOpportunities;
 import br.unb.unbsolidaria.persistency.Database;
 
-public class OrganizationScreen extends AppCompatActivity
+public class VoluntaryScreen extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private FragmentManager fragmentManager;
@@ -32,23 +36,23 @@ public class OrganizationScreen extends AppCompatActivity
     private Toolbar mActivityToolbar;
 
     private User mLoggedUser;
-    private Organization mUserProfile;
+    private Voluntary mUserProfile;
     private NavigationView mNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_organization_screen);
+        setContentView(R.layout.activity_voluntary_screen);
         mActivityToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mActivityToolbar);
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.vo_drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, mActivityToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-        mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        mNavigationView = (NavigationView) findViewById(R.id.vo_nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
 
         fragmentManager = getSupportFragmentManager();
@@ -70,14 +74,14 @@ public class OrganizationScreen extends AppCompatActivity
             return;
 
         try{
-            mUserProfile = Database.getInstance().getOrganizacoes().get(mLoggedUser.getId());
+            mUserProfile = Database.getInstance().getVoluntaries().get(mLoggedUser.getId());
         } catch (IndexOutOfBoundsException e){
             setUpUserProfileDialogError();
             return;
         }
 
-        nav_UserName = (TextView) mNavigationView.getHeaderView(0).findViewById(R.id.ov_navTitle);
-        nav_UserName.setText(mUserProfile.getCommercialName());
+        nav_UserName = (TextView) mNavigationView.getHeaderView(0).findViewById(R.id.vo_navTitle);
+        nav_UserName.setText(mUserProfile.getName());
         //TODO: set-up also picture (maybe it is in User class)
     }
 
@@ -94,7 +98,7 @@ public class OrganizationScreen extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.vo_drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -129,7 +133,7 @@ public class OrganizationScreen extends AppCompatActivity
         int id = item.getItemId();
         Fragment userFragment;
         FragmentTransaction ft;
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.vo_drawer_layout);
 
         if (mLoggedUser == null)
             return true;
@@ -146,24 +150,21 @@ public class OrganizationScreen extends AppCompatActivity
         }
         lastSelectedItem = id;
 
-        if (id == R.id.orgv_sbNewsItem) {
+        if (id == R.id.volv_sbNewsItem) {
             mActivityToolbar.setTitle("Novidades");
             ft.commit();
-        } else if (id == R.id.orgv_sbCreateOpportunityItem) {
-            userFragment = new CreateOpportunity();
-            ft.add(R.id.co_frameLayout, userFragment).commit();
-            mActivityToolbar.setTitle("Criar Oportunidade");
-
-        } else if (id == R.id.orgv_sbViewOpportunityItem) {
-            userFragment = new ViewOpportunities();
-            ft.add(R.id.co_frameLayout, userFragment).commit();
+        } else if (id == R.id.volv_sbViewOpportunityItem) {
+            Intent intent = new Intent(this, OpportunitiesListActivity.class);
+            intent.putExtra("user", mUserProfile);
+            startActivity(intent);
+            ft.commit();
             mActivityToolbar.setTitle("Ver Oportunidades");
 
         } else if (id == R.id.orgv_sbEditProfileItem) {
             userFragment = new EditProfile();
             ft.add(R.id.co_frameLayout, userFragment).commit();
             mActivityToolbar.setTitle("Editar Perfil");
-        } else if (id == R.id.orgv_sbExitItem) {
+        } else if (id == R.id.volv_sbExitItem) {
             exitHandler();
         }
 
@@ -176,7 +177,7 @@ public class OrganizationScreen extends AppCompatActivity
         finish();
     }
 
-    public Organization getUserProfile(){
+    public Voluntary getUserProfile(){
         return mUserProfile;
     }
 

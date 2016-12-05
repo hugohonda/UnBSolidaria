@@ -3,6 +3,7 @@ package br.unb.unbsolidaria.entities;
 //TODO: decidir se é viável o uso da livraria ICU. Razão: disponível somente a partir da API 24 (Android 7.0)
 //import android.icu.util.Calendar;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Calendar;
  * - Public static final fields (constants) are ALL_CAPS_WITH_UNDERSCORES.
  */
 //TODO: verificar se ha algo mais a ser adicionado
-public class Voluntary {
+public class Voluntary implements Serializable {
     //ID
     private int id;
     //CPF

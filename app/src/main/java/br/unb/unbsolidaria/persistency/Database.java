@@ -1,9 +1,22 @@
 package br.unb.unbsolidaria.persistency;
 
+import android.content.Context;
+import android.widget.Toast;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import br.unb.unbsolidaria.R;
@@ -27,10 +40,20 @@ public class Database {
     private List<Opportunity> opportunities;
     private List<User> users;
 
+    //DataBase Extension Program
+    private static String db_file_location = "db_inst00.dat";
+    private int mExtraOpportunityCount;
+    private List<Opportunity> extendedOpportunityList;
+    private LinkedHashMap<Integer, LinkedList<Integer>> org_opportunityList;
+
+
+    private int mExtraVoluntaryCount;
+
+    private boolean customUser;
 
     private Database() {
         voluntaries = Arrays.asList(
-                new Voluntary(0, "968.551.756-86", "Otávio", "Barros Fernandes", getCalendar("05/07/1991"), "OtavioBarrosFernandes@teleworm.us", "(61) 3186-9880",
+                new Voluntary(0, "968.551.756-86", "Otávio", "Barros Fernandes", getCalendar("05/07/1991"), "ottofernandes@teleworm.us", "(61) 3186-9880",
                         "Estudante de Engenharia de Produção", "12/0136867", "Rua do Pontal, 1394, Samambaia-DF", "M", true),
                 new Voluntary(1, "848.372.290-93", "André", "Barbosa Melo", getCalendar("22/11/1994"), "AndreBarbosaMelo@rhyta.com", "(61) 998301-6297",
                         "Estudante de Pedagogia", "13/0075893", "Rua Doutor José Leite Pinheiro, 1480, Taguatinga-DF", "M", true),
@@ -72,6 +95,7 @@ public class Database {
                         "Estudante de Física", "14/0024798", "Quadra CLS 210 Bloco A, Asa Sul - DF", "M", true),
                 new Voluntary(19, "095.392.391-68", "Vinícius", "Pereira Castro", getCalendar("21/05/1994"), "ViniciusPereiraCastro@rhyta.com", "(61) 92427-3487",
                         "Estudante de Matemática", "11/0155788", "Quadra 105 Bloco D, Cruzeiro Novo - DF", "M", true)
+
         );
         organizacoes = Arrays.asList(
                 new Organization(0, "79.214.237/0001-25", "César e Felipe Marcenaria Ltda", "CF Marcenaria", "pesquisa@cesarfelipe.com.br", "(61) 3906-0035",
@@ -154,6 +178,16 @@ public class Database {
                 new User(organizacoes.get(0).getEmail(), "12345", User.UserType.organization, 0),
                 new User(voluntaries.get(0).getEmail(), "69880", User.UserType.voluntary, 0)
         );
+
+        // Demonstration Program #1
+        createDBExtendedList();
+
+        int demo_orgID = 0;
+        addOrganizationOpportunity(organizacoes.get(demo_orgID), opportunities.get(demo_orgID));
+    }
+
+    private int getOpportunityCount(){
+        return mExtraOpportunityCount;
     }
 
     public static Database getInstance() {
@@ -163,7 +197,7 @@ public class Database {
         return instance;
     }
 
-    private Calendar getCalendar(String data) {
+    public Calendar getCalendar(String data) {
         SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
         Calendar c = Calendar.getInstance();
 
@@ -194,7 +228,152 @@ public class Database {
 
     public List<User> getUsers(){return users;}
 
-    public Opportunity getOpportunitie(int id ){
-        return opportunities.get(id);
+    public Opportunity getOpportunitie(int id){
+        return getOpportunitiesList().get(id);
     }
+
+
+    // DataBase Extension Program
+    public boolean addOrganizationOpportunity(Organization org, Opportunity opt){
+        if (org == null || opt == null)
+            return false;
+
+        if ( !org_opportunityList.containsKey(org.getId()) ){
+            //create Organization Entry on that list
+            LinkedList<Integer> newList = new LinkedList<>();
+            newList.add(opt.getID());
+            org_opportunityList.put(org.getId(), newList);
+            return true;
+        }
+
+        LinkedList<Integer> currentList = org_opportunityList.get(org.getId());
+        currentList.add(opt.getID());
+
+        return true;
+    }
+
+    public int getExtraVoluntaryCount() {
+        return mExtraVoluntaryCount;
+    }
+
+    /**
+     * addOpportunityHelper helps the organization type users add non-existing opportunities to
+     * local DataBase system.
+     *
+     * An opportunity object is first created with verified parameters given by the callee.
+     * Than that nearly new created object is added to the organization_has_opportunity list and
+     * returned by this function.
+     */
+    public Opportunity addOpportunityHelper(String title, String description, String local, int spots, String startDate, String endDate, Organization org){
+        Opportunity newOpportunity;
+
+        // a good DBSystem has parameter checking when updates are requested
+        if (org == null)
+            return null;
+
+        newOpportunity = new Opportunity(mExtraOpportunityCount +1, local, spots, title, description, getCalendar(startDate), getCalendar(endDate), org);
+
+        if(newOpportunity == null)
+            return null;
+
+        extendedOpportunityList.add(0, newOpportunity); mExtraOpportunityCount += 1;
+        addOrganizationOpportunity(org, newOpportunity);
+
+        return newOpportunity;
+    }
+
+    public List<Opportunity> getOpportunitiesList() {
+        List<Opportunity> extendedList;
+
+        extendedList = new ArrayList<>(extendedOpportunityList);
+        extendedList.addAll(opportunities);
+
+        return extendedList;
+    }
+
+    public void saveLocalState(Context ctx) {
+        // static users are not saved
+
+        /**
+         * file format:
+         * int extraOpportunities
+         * List<Opportunity> extendedOpportunityList
+         * LinkedHashMap<Integer, LinkedList<Integer>> org_opportunityList
+         */
+        FileOutputStream fos = null;
+        try {
+            fos = ctx.openFileOutput(db_file_location, Context.MODE_PRIVATE);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        ObjectOutputStream os = null;
+        try {
+            os = new ObjectOutputStream(fos);
+            os.writeObject(mExtraOpportunityCount - 19);
+            for(Opportunity elem : extendedOpportunityList){
+                os.writeObject(elem);
+            }
+
+            int listSize = org_opportunityList.size();
+            os.writeObject(listSize);
+            for (Integer key : org_opportunityList.keySet()){
+                os.writeObject(key);
+                os.writeObject(org_opportunityList.get(key).get(0));
+            }
+            os.close();
+            fos.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadLocalState(Context ctx){
+        FileInputStream fis;
+        try {
+            fis = ctx.openFileInput(db_file_location);
+        } catch (FileNotFoundException e) {
+            createDBExtendedList();
+            return;
+        }
+        ObjectInputStream is;
+        try {
+            is = new ObjectInputStream(fis);
+            mExtraOpportunityCount = (int) is.readObject() - 19;
+
+            LinkedList<Opportunity> tmpList = new LinkedList<>();
+            for(int elem=0; elem < mExtraOpportunityCount; elem++){
+                tmpList.add( (Opportunity)is.readObject() );
+            }
+
+            extendedOpportunityList = tmpList;
+
+            int listSize = (int)is.readObject();
+            LinkedHashMap<Integer, LinkedList<Integer>> tmpList2 = new LinkedHashMap<>();
+            for(int elem=0; elem < listSize; elem++){
+                int key = (int)is.readObject();
+                int value = (int)is.readObject();
+                LinkedList<Integer> tmp = new LinkedList<>();
+                tmp.add(value);
+                tmpList2.put(key, tmp);
+            }
+
+            org_opportunityList = tmpList2;
+            is.close();
+            fis.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        //Toast.makeText(ctx, "data: "+ extendedOpportunityList.get(0), Toast.LENGTH_SHORT).show();
+    }
+
+    private void createDBExtendedList() {
+        mExtraOpportunityCount = 19 + 0;
+        extendedOpportunityList = new LinkedList<>();
+
+        org_opportunityList = new LinkedHashMap<>(5);
+    }
+
 }

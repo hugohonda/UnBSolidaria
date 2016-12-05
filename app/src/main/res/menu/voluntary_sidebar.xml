@@ -3,23 +3,19 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/orgv_sbNewsItem"
+            android:id="@+id/volv_sbNewsItem"
             android:icon="@drawable/ic_news"
             android:title="Notícias" />
         <item
-            android:id="@+id/orgv_sbCreateOpportunityItem"
-            android:icon="@drawable/ic_add"
-            android:title="Criar Oportunidade" />
-        <item
-            android:id="@+id/orgv_sbViewOpportunityItem"
+            android:id="@+id/volv_sbViewOpportunityItem"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Ver Oportunidades" />
+            android:title="Visualizar Oportunidades" />
         <item
-            android:id="@+id/orgv_sbEditProfileItem"
+            android:id="@+id/volv_sbEditProfileItem"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Editar Perfil" />
         <item
-            android:id="@+id/orgv_sbExitItem"
+            android:id="@+id/volv_sbExitItem"
             android:icon="@drawable/ic_menu_manage"
             android:title="Sair" />
     </group>

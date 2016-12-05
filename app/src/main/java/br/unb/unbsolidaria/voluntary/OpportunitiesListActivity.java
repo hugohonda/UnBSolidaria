@@ -1,4 +1,4 @@
-package br.unb.unbsolidaria;
+package br.unb.unbsolidaria.voluntary;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +10,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 
+import br.unb.unbsolidaria.R;
 import br.unb.unbsolidaria.adapter.OpportunitiesAdapter;
 import br.unb.unbsolidaria.entities.Opportunity;
+import br.unb.unbsolidaria.entities.Voluntary;
 import br.unb.unbsolidaria.persistency.Database;
 
 public class OpportunitiesListActivity extends AppCompatActivity {
@@ -19,6 +21,10 @@ public class OpportunitiesListActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
+    public static final String VIEW_MESSAGE = "br.unb.unbsolidaria.VIEWOPP";
+    List<Opportunity> mList;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,31 +38,11 @@ public class OpportunitiesListActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        List<Opportunity> mList = getSetOportinidadesList(10);
+        Database bd = Database.getInstance();
+        mList = bd.getOpportunitiesList();
 
-        mAdapter = new OpportunitiesAdapter(this, mList);
+        mAdapter = new OpportunitiesAdapter(this, mList, (Voluntary) getIntent().getSerializableExtra("user"));
         mRecyclerView.setAdapter(mAdapter);
     }
-
-    public List<Opportunity> getSetOportinidadesList(int qtd) {
-
-        Database bd = Database.getInstance();
-        List<Opportunity> listAux = bd.getOpportunities();
-        return (listAux);
-    }
-
-    private Calendar getCalendar(String data) {
-        SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Calendar c = Calendar.getInstance();
-
-        try {
-            c.setTime(dataFormat.parse(data));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        return c;
-    }
-
 
 }
