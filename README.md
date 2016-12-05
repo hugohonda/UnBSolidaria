@@ -1,6 +1,9 @@
 # Android App - UnB Solidária
 Aplicativo Android - Projeto UnB Solidária - Linguagens de Programação - 2/2016 - Universidade de Brasília
 
+##Como executar o projeto:
+
+Basta fazer download do projeto ou cloná-lo para sua máquina. O projeto poderá ser editado e executado utilizando o Android Studio
 
 ##To-Do
 
