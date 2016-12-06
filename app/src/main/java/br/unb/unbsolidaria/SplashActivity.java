@@ -20,8 +20,8 @@ public class SplashActivity extends AppCompatActivity {
     protected void onResume (){
         super.onResume();
 
-        //Start LoginActivity
-        Intent intent = new Intent(this, LoginActivity.class);
+        //Start SignInActivity
+        Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
     }
 

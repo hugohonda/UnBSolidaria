@@ -22,4 +22,35 @@ public class ExampleUnitTest {
         assertTrue(RegisterValidation.isValidCNPJ("00348003000110"));
     }
 
+    @Test
+    public void ValidaNome(){
+        String valid[] = {
+                "Jao",
+                "Marcos M.",
+                "César",
+                "Henrique Paiva",
+                "Éden aE",
+                "NOME EM CAIXA ALTA"
+        };
+        String not_valid[] = {
+                "VINTEVINTEVINTEVINTE1",
+                "123",
+                "1",
+                "Ay",
+                ""
+        };
+
+        for(String name : valid){
+            boolean v= RegisterValidation.isValidName(name, true);
+            if (!v) System.out.println("invalid:" + name);
+            assertTrue(RegisterValidation.isValidName(name, true));
+        }
+
+        for(String name : not_valid){
+            boolean v = RegisterValidation.isValidName(name, true);
+            if (v) System.out.println("invalid: " + name);
+            assertFalse(RegisterValidation.isValidName(name, true));
+        }
+    }
+
 }

@@ -18,13 +18,8 @@ import br.unb.unbsolidaria.entities.Voluntary;
 import br.unb.unbsolidaria.organization.OrganizationScreen;
 import br.unb.unbsolidaria.voluntary.VoluntaryScreen;
 
-/**
- * A login screen that offers login via email/password.
- */
-public class LoginActivity extends AppCompatActivity {
-    private static final int REQUEST_SIGNUP = 0;
-    private static final int RESULT_USER_OK = 5;
-    private static final int RESULT_ASS_OK = 10;
+
+public class SignInActivity extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     private EditText _emailText;
     private EditText _passwordText;
@@ -59,7 +54,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Start the Signup activity
                 Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
-                startActivityForResult(intent, REQUEST_SIGNUP);
+                startActivity(intent);
             }
         });
     }
@@ -95,18 +90,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         }, 3000);
 
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == REQUEST_SIGNUP) {
-            if (resultCode == RESULT_USER_OK) {
-                Intent intent = new Intent(this, Voluntary.class);
-                startActivity(intent);
-                this.finish();
-            }
-        }
     }
 
     @Override

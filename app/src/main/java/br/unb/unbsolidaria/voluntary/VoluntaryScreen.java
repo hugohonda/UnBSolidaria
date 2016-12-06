@@ -17,7 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import br.unb.unbsolidaria.LoginActivity;
+import br.unb.unbsolidaria.SignInActivity;
 import br.unb.unbsolidaria.R;
 import br.unb.unbsolidaria.entities.User;
 import br.unb.unbsolidaria.entities.Voluntary;
@@ -65,7 +65,7 @@ public class VoluntaryScreen extends AppCompatActivity
         Intent thisIntent = getIntent();
         TextView nav_UserName;
 
-        mLoggedUser = (User)thisIntent.getSerializableExtra(LoginActivity.LOGIN_MESSAGE);
+        mLoggedUser = (User)thisIntent.getSerializableExtra(SignInActivity.LOGIN_MESSAGE);
         if (mLoggedUser == null)
             return;
 

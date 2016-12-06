@@ -50,4 +50,13 @@ public class RegisterValidation {
         System.out.printf("CEP Valido:%s \n", RegisterValidation.isValidCEP("12910-180"));
         System.out.printf("Matricula Valida:%s \n", RegisterValidation.isValidMatricula("150019284"));
     }
+
+    //TODO: improve name checking's regex pattern
+    public static boolean isValidName(String name, boolean permitDigits) {
+        if (name == null || name.length() < 3 || name.length() > 20) return false;
+        //if (name.matches("^.*[0-9].*$")) return false;
+
+        String nameRegEx = "^[A-za-z ãáàâçéèêíìõóôúü.ÃÁÀÂÇÉÈÊÍÌÔÓÔÚÜ" + (permitDigits ? "0-9" : "") + "]+$";
+        return name.matches(nameRegEx);
+    }
 }

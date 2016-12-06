@@ -2,7 +2,6 @@ package br.unb.unbsolidaria.organization;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -18,7 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import br.unb.unbsolidaria.LoginActivity;
+import br.unb.unbsolidaria.SignInActivity;
 import br.unb.unbsolidaria.R;
 import br.unb.unbsolidaria.entities.Organization;
 import br.unb.unbsolidaria.entities.User;
@@ -65,7 +64,7 @@ public class OrganizationScreen extends AppCompatActivity
         Intent thisIntent = getIntent();
         TextView nav_UserName;
 
-        mLoggedUser = (User)thisIntent.getSerializableExtra(LoginActivity.LOGIN_MESSAGE);
+        mLoggedUser = (User)thisIntent.getSerializableExtra(SignInActivity.LOGIN_MESSAGE);
         if (mLoggedUser == null)
             return;
 

@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Created by chris on 02/11/16.
  */
 
-public class Organization implements Serializable {
+public class Organization {
 
     //ID Organization
     private int id;

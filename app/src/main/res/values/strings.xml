@@ -21,16 +21,14 @@
     <string name="prompt_password">Senha</string>
     <string name="prompt_retype_password">Reescreva a Senha</string>
     <string name="action_sign_in">Login</string>
-    <string name="action_register">Não tem conta? Registre-se</string>
+    <string name="action_register">Não possui conta? Registre-se</string>
     <string name="action_login">Já tem conta? Faça o Login</string>
     <string name="error_invalid_email">Esse email não é válido</string>
     <string name="error_invalid_password">Essa senha é muito pequena</string>
     <string name="error_incorrect_password">Senha incorreta</string>
-    <string name="error_field_required">Campo necessário</string>
+    <string name="error_field_required">Campo obrigatório</string>
     <string name="error_login_auth">O Login Falhou.</string>
-    <string name="permission_rationale">"Permissão de acesso aos contatos necessária para auto-completar
-        email."
-    </string>
+    <string name="permission_rationale">Permissão de acesso aos contatos necessária para auto-completar email.</string>
     <string-array name="su_AcountTypeOptions">
         <item>Voluntário</item>
         <item>Associação</item>

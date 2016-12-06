@@ -24,13 +24,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".LoginActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:name=".SignInActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".voluntary.OpportunityAcitivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".SignupUserActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SignUpActivity"

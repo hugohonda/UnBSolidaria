@@ -1,138 +1,139 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="0dp"
+    android:paddingLeft="19dp"
+    android:paddingRight="19dp">
+
+    <!--  Name Label -->
+
+    <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="0dp"
-        android:paddingLeft="19dp"
-        android:paddingRight="19dp">
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
 
-        <!--  Name Label -->
-
-        <android.support.design.widget.TextInputLayout
+        <EditText android:id="@+id/input_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:inputType="textCapWords"
+            android:hint="@string/name_ass"
+            android:layout_weight="1" />
+    </android.support.design.widget.TextInputLayout>
 
-            <EditText android:id="@+id/input_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textCapWords"
-                android:hint="@string/name_ass"
-                android:layout_weight="1" />
-        </android.support.design.widget.TextInputLayout>
+    <!-- CNPJ Label -->
 
-        <!-- CNPJ Label -->
-
-        <android.support.design.widget.TextInputLayout
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+        <EditText android:id="@+id/input_cpf_cnpj"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_cpf_cnpj"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:hint="@string/CPF_CNPJ"
-                android:maxLength="14"/>
-        </android.support.design.widget.TextInputLayout>
+            android:inputType="number"
+            android:hint="@string/CPF_CNPJ"
+            android:maxLength="14"/>
+    </android.support.design.widget.TextInputLayout>
 
-        <!--Website Label -->
-        <android.support.design.widget.TextInputLayout
+    <!--Website Label -->
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+        <EditText android:id="@+id/input_site"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_site"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textNoSuggestions|textUri"
-                android:hint="@string/website"/>
-        </android.support.design.widget.TextInputLayout>
+            android:inputType="textNoSuggestions|textUri"
+            android:hint="@string/website"/>
+    </android.support.design.widget.TextInputLayout>
 
-        <!-- Address Label -->
-        <android.support.design.widget.TextInputLayout
+    <!-- Address Label -->
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+        <EditText android:id="@+id/input_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_address"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textCapWords"
-                android:hint="@string/address"/>
-        </android.support.design.widget.TextInputLayout>
+            android:inputType="textCapWords"
+            android:hint="@string/address"/>
+    </android.support.design.widget.TextInputLayout>
 
-        <!-- CEP Label -->
-        <android.support.design.widget.TextInputLayout
+    <!-- CEP Label -->
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+        <EditText android:id="@+id/input_cep"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_cep"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"
-                android:hint="@string/cep"
-                android:maxLength="8"/>
-        </android.support.design.widget.TextInputLayout>
+            android:inputType="number"
+            android:hint="@string/cep"
+            android:maxLength="8"/>
+    </android.support.design.widget.TextInputLayout>
 
-        <!-- Email Label -->
-        <android.support.design.widget.TextInputLayout
+    <!-- Email Label -->
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+        <EditText android:id="@+id/input_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
-                android:hint="@string/prompt_email" />
-        </android.support.design.widget.TextInputLayout>
+            android:inputType="textEmailAddress"
+            android:hint="@string/prompt_email" />
+    </android.support.design.widget.TextInputLayout>
 
-        <!-- Password Label -->
-        <android.support.design.widget.TextInputLayout
+    <!-- Password Label -->
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+        <EditText android:id="@+id/input_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="@string/prompt_password"/>
-        </android.support.design.widget.TextInputLayout>
+            android:inputType="textPassword"
+            android:hint="@string/prompt_password"/>
+    </android.support.design.widget.TextInputLayout>
 
-        <!-- Retype Password Label -->
-        <android.support.design.widget.TextInputLayout
+    <!-- Retype Password Label -->
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp">
+        <EditText android:id="@+id/input_retype_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_retype_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="@string/prompt_retype_password"/>
-        </android.support.design.widget.TextInputLayout>
+            android:inputType="textPassword"
+            android:hint="@string/prompt_retype_password"/>
+    </android.support.design.widget.TextInputLayout>
 
-        <!-- Signup Button -->
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_signup"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
-            android:padding="12dp"
-            android:text="@string/new_account"/>
+    <!-- Signup Button -->
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_signup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        android:padding="12dp"
+        android:text="@string/new_account" />
 
-        <TextView android:id="@+id/link_login"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="@string/action_login"
-            android:gravity="center"
-            android:textSize="16sp"/>
+    <TextView android:id="@+id/link_login"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:text="@string/action_login"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:onClick="finish"/>
 
 </LinearLayout>

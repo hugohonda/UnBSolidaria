@@ -10,7 +10,7 @@ import java.util.LinkedList;
  * Created by lucasrez on 02/11/16.
  */
 
-public class Opportunity implements Serializable {
+public class Opportunity {
     //TODO: discutir feature de aprovação por parte da Organização
     //não há entidade no banco de dados
     private boolean requerAprovacao;
