@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp">
+    <LinearLayout
+        android:id="@+id/su_baselayout"
+        android:orientation="vertical" android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:text="Desejo entrar como"
+                android:ems="10"
+                android:id="@+id/su_tAccountType" />
+
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/su_sAccountType"
+                android:layout_weight="0.14"
+                android:entries="@array/su_AcountTypeOptions"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

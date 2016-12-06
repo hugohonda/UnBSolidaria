@@ -27,22 +27,17 @@
             android:name=".LoginActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SignupChoiceActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".voluntary.OpportunityAcitivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SignupUserActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".SignupAssActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".voluntary.ViewOpportunities"></activity>
+            android:name=".SignUpActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:exported="true"/>
+        <activity android:name=".voluntary.ViewOpportunities">
+        </activity>
         <activity
             android:name=".organization.OrganizationScreen"
             android:label="@string/title_activity_organization_screen"

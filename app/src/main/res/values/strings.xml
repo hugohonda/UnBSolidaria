@@ -31,6 +31,10 @@
     <string name="permission_rationale">"Permissão de acesso aos contatos necessária para auto-completar
         email."
     </string>
+    <string-array name="su_AcountTypeOptions">
+        <item>Voluntário</item>
+        <item>Associação</item>
+    </string-array>
 
     <!-- Organization-->
     <string name="co_tDateFormat">"%1$d/%2$d/%3$d"</string>
