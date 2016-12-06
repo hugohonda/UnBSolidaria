@@ -36,7 +36,7 @@ public class ViewOpportunities extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View parentView = inflater.inflate(R.layout.activity_opportunities_list, container, false);
+        View parentView = inflater.inflate(R.layout.fragment_opportunities_list, container, false);
 
         mRecyclerView = (RecyclerView) parentView.findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);

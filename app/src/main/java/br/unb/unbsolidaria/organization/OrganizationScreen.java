@@ -98,7 +98,8 @@ public class OrganizationScreen extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            // Avoid going accidently to the Login Screen
+            //super.onBackPressed();
         }
     }
 
@@ -190,4 +191,5 @@ public class OrganizationScreen extends AppCompatActivity
         newsItem.setChecked(true);
         onNavigationItemSelected(newsItem);
     }
+
 }

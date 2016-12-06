@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
-                android:hint="@string/name" />
+                android:hint="@string/name_ass" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- CNPJ Label -->
@@ -42,7 +42,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
-                android:hint="@string/cnpj"
+                android:hint="@string/CPF_CNPJ"
                 android:maxLength="14"/>
         </android.support.design.widget.TextInputLayout>
 

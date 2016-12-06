@@ -197,7 +197,7 @@ public class Database {
         return instance;
     }
 
-    public Calendar getCalendar(String data) {
+    public static Calendar getCalendar(String data) {
         SimpleDateFormat formatoData = new SimpleDateFormat("dd/MM/yyyy");
         Calendar c = Calendar.getInstance();
 
@@ -222,24 +222,25 @@ public class Database {
         return tags;
     }
 
-    public List<Opportunity> getOpportunities() {
-        return opportunities;
-    }
-
     public List<User> getUsers(){return users;}
 
     public Opportunity getOpportunitie(int id){
         return getOpportunitiesList().get(id);
     }
 
+    public int getExtraVoluntaryCount() { return mExtraVoluntaryCount; }
 
-    // DataBase Extension Program
+
+    /**
+     * Links an organization to an opportunity element. This follows one to many relationship.
+     * @return True if the link could be established
+     */
     public boolean addOrganizationOpportunity(Organization org, Opportunity opt){
         if (org == null || opt == null)
             return false;
 
         if ( !org_opportunityList.containsKey(org.getId()) ){
-            //create Organization Entry on that list
+            //create Organization entry on that list
             LinkedList<Integer> newList = new LinkedList<>();
             newList.add(opt.getID());
             org_opportunityList.put(org.getId(), newList);
@@ -250,10 +251,6 @@ public class Database {
         currentList.add(opt.getID());
 
         return true;
-    }
-
-    public int getExtraVoluntaryCount() {
-        return mExtraVoluntaryCount;
     }
 
     /**
@@ -365,8 +362,6 @@ public class Database {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
-        //Toast.makeText(ctx, "data: "+ extendedOpportunityList.get(0), Toast.LENGTH_SHORT).show();
     }
 
     private void createDBExtendedList() {

@@ -16,7 +16,6 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import br.unb.unbsolidaria.entities.User;
 import br.unb.unbsolidaria.entities.Voluntary;
 import br.unb.unbsolidaria.organization.OrganizationScreen;
-import br.unb.unbsolidaria.voluntary.OpportunitiesListActivity;
 import br.unb.unbsolidaria.voluntary.VoluntaryScreen;
 
 /**

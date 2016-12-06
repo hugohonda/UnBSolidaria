@@ -42,7 +42,7 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".voluntary.OpportunitiesListActivity"></activity>
+        <activity android:name=".voluntary.ViewOpportunities"></activity>
         <activity
             android:name=".organization.OrganizationScreen"
             android:label="@string/title_activity_organization_screen"

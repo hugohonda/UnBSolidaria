@@ -5,9 +5,11 @@
     <string name="logo">Logo</string>
     <string name="user">Voluntário</string>
     <string name="ass">Associação</string>
-    <string name="name">Nome</string>
-    <string name="cpf">CPF</string>
-    <string name="cnpj">CNPJ</string>
+    <string name="name_ass">Razão Social</string>
+    <string name="name_usr">Nome Completo</string>
+    <string name="CPF">CPF</string>
+    <string name="CNPJ">CNPJ</string>
+    <string name="CPF_CNPJ">CPF/CNPJ</string>
     <string name="website">Site</string>
     <string name="age">Idade</string>
     <string name="matricula">Matrícula</string>

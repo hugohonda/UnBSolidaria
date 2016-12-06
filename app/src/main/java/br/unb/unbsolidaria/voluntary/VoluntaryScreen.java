@@ -16,16 +16,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import br.unb.unbsolidaria.LoginActivity;
 import br.unb.unbsolidaria.R;
-import br.unb.unbsolidaria.entities.Organization;
 import br.unb.unbsolidaria.entities.User;
 import br.unb.unbsolidaria.entities.Voluntary;
-import br.unb.unbsolidaria.organization.CreateOpportunity;
 import br.unb.unbsolidaria.organization.EditProfile;
-import br.unb.unbsolidaria.organization.ViewOpportunities;
 import br.unb.unbsolidaria.persistency.Database;
 
 public class VoluntaryScreen extends AppCompatActivity
@@ -154,7 +150,7 @@ public class VoluntaryScreen extends AppCompatActivity
             mActivityToolbar.setTitle("Novidades");
             ft.commit();
         } else if (id == R.id.volv_sbViewOpportunityItem) {
-            Intent intent = new Intent(this, OpportunitiesListActivity.class);
+            Intent intent = new Intent(this, ViewOpportunities.class);
             intent.putExtra("user", mUserProfile);
             startActivity(intent);
             ft.commit();

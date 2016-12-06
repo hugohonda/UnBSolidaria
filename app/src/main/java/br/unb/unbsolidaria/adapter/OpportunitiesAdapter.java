@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import br.unb.unbsolidaria.voluntary.OpportunitiesListActivity;
+import br.unb.unbsolidaria.voluntary.ViewOpportunities;
 import br.unb.unbsolidaria.voluntary.OpportunityAcitivity;
 import br.unb.unbsolidaria.R;
 import br.unb.unbsolidaria.entities.Opportunity;
@@ -79,7 +79,7 @@ public class OpportunitiesAdapter extends RecyclerView.Adapter<OpportunitiesAdap
                 Intent intent=new Intent(mContext, OpportunityAcitivity.class);
                 intent.putExtra("id",position);
                 if (mLoggedUser != null){
-                    intent.putExtra(OpportunitiesListActivity.VIEW_MESSAGE, mLoggedUser);
+                    intent.putExtra(ViewOpportunities.VIEW_MESSAGE, mLoggedUser);
                 }
                 mContext.startActivity(intent);
             }

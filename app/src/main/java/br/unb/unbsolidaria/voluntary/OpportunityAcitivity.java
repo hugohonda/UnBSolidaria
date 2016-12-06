@@ -19,7 +19,6 @@ import br.unb.unbsolidaria.entities.Opportunity;
 import br.unb.unbsolidaria.entities.Voluntary;
 import br.unb.unbsolidaria.extras.ImageHelper;
 import br.unb.unbsolidaria.persistency.Database;
-import br.unb.unbsolidaria.voluntary.OpportunitiesListActivity;
 
 
 public class OpportunityAcitivity extends AppCompatActivity {
@@ -37,7 +36,7 @@ public class OpportunityAcitivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.oportunidateToolbar);
         setSupportActionBar(toolbar);
 
-        loggedVoluntary = (Voluntary)getIntent().getSerializableExtra(OpportunitiesListActivity.VIEW_MESSAGE);
+        loggedVoluntary = (Voluntary)getIntent().getSerializableExtra(ViewOpportunities.VIEW_MESSAGE);
         int id = getIntent().getIntExtra("id", 0);
 
         Database bd = Database.getInstance();

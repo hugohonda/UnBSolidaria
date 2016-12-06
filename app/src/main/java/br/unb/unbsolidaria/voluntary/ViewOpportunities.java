@@ -5,9 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.List;
 
 import br.unb.unbsolidaria.R;
@@ -16,7 +13,7 @@ import br.unb.unbsolidaria.entities.Opportunity;
 import br.unb.unbsolidaria.entities.Voluntary;
 import br.unb.unbsolidaria.persistency.Database;
 
-public class OpportunitiesListActivity extends AppCompatActivity {
+public class ViewOpportunities extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -29,7 +26,7 @@ public class OpportunitiesListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_opportunities_list);
+        setContentView(R.layout.fragment_opportunities_list);
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 
         mRecyclerView.setHasFixedSize(true);
