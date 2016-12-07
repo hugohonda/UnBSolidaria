@@ -39,6 +39,7 @@ public class Opportunity {
     public Opportunity() {
     }
 
+
     public Opportunity(int id, String address, int nPositions, String title,
                        String description, Calendar startDate, Calendar endDate,
                        Organization organization, int photo) {
@@ -147,4 +148,6 @@ public class Opportunity {
     public void setPhoto(int photo) {
         this.photo = photo;
     }
+
+    public int getSpots() { return nPositions;}
 }

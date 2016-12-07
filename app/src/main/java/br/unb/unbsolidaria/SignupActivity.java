@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.media.ExifInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -19,9 +18,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 import br.unb.unbsolidaria.entities.Organization;
 import br.unb.unbsolidaria.entities.RegisterValidation;
 import br.unb.unbsolidaria.entities.User;
+import br.unb.unbsolidaria.entities.Voluntary;
 import br.unb.unbsolidaria.persistency.Database;
 
 public class SignUpActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, View.OnClickListener {
@@ -55,10 +57,14 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
     private String cnpj;
     private String site;
-    private String adress;
+    private String address;
+
+    private String cpf;
+    private String matricula;
+    private String gender;
 
     private int lastSelectedItem = -1;
-    
+
     private Database db_interface;
 
     @Override
@@ -117,7 +123,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
                         switch (lastSelectedItem){
                             case 0:
-                                result = false;
+                                usr_response = dbAddVoluntary();
                                 break;
                             case 1:
                                 usr_response = dbAddOrganization();
@@ -140,10 +146,23 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
         usr_request = new User(email, password, User.UserType.organization, db_interface.getUserCount()+1);
         org_request = new Organization(db_interface.getOpportunityCount()+1,
-                cnpj, "", name, email, "", site, "", adress, cep);
+                cnpj, "", name, email, "", site, "", address, cep);
 
         db_interface.addUserHelper(usr_request);
         db_interface.addOrganizationHelper(org_request);
+
+        return usr_request;
+    }
+    private User dbAddVoluntary() {
+        User usr_request;
+        Voluntary vol_request;
+
+        usr_request = new User(email, password, User.UserType.voluntary, db_interface.getUserCount()+1);
+        vol_request = new Voluntary(db_interface.getVoluntaryCount()+1,
+                cpf, name, "", Calendar.getInstance(), email, "", "", matricula, address, gender, true);
+
+        db_interface.addUserHelper(usr_request);
+        db_interface.addVoluntaryHelper(vol_request);
 
         return usr_request;
     }
@@ -231,7 +250,7 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
         cnpj = _cpfcnpjText.getText().toString();
         site = _websiteText.getText().toString();
-        adress = ((EditText)findViewById(R.id.input_address)).toString();
+        address = ((EditText)findViewById(R.id.input_address)).toString();
 
         if (!RegisterValidation.isValidCNPJ(cnpj)) {
             _cpfcnpjText.setError("insira um CNPJ válido");
@@ -255,9 +274,11 @@ public class SignUpActivity extends AppCompatActivity implements AdapterView.OnI
 
         EditText cpfcpnjText = (EditText) volForm.findViewById(R.id.input_cpf);
         EditText matriculaText = (EditText) volForm.findViewById(R.id.input_matricula);
+        EditText genderText = (EditText) volForm.findViewById(R.id.input_gender);
 
-        String cpf = cpfcpnjText.getText().toString();
-        String matricula = matriculaText.getText().toString();
+        cpf = cpfcpnjText.getText().toString();
+        matricula = matriculaText.getText().toString();
+        gender = genderText.getText().toString();
 
         if (!RegisterValidation.isValidCPF(cpf)) {
             cpfcpnjText.setError("insira um CPF válido");

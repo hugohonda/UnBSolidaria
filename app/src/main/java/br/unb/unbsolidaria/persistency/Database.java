@@ -213,11 +213,11 @@ public class Database {
     }
 
     public List<Voluntary> getVoluntaries() {
-        return voluntaries;
+        return extendedVoluntaryList;
     }
 
-    public List<Organization> getOrganizacoes() {
-        return organizacoes;
+    public List<Organization> getOrganizations() {
+        return extendedOrganizationList;
     }
 
     public List<Tag> getTags() {
@@ -285,7 +285,7 @@ public class Database {
         if (deploy.getOrganization() == null)
             return false;
 
-        extendedOpportunityList.add(deploy); mExtraOpportunityCount += 1;
+        extendedOpportunityList.add(0, deploy); mExtraOpportunityCount += 1;
         sql_interface.addOpportunity(deploy);
 
         return true;
@@ -295,6 +295,8 @@ public class Database {
         return mExtraOpportunityCount;
     }
 
+    public int getVoluntaryCount() { return mExtraVoluntaryCount; }
+
     public int getUserCount() {
         return mExtraUserCount;
     }
@@ -303,6 +305,14 @@ public class Database {
 
         extendedOrganizationList.add(deploy); mExtraOrganizationCount += 1;
         sql_interface.addOrganization(deploy);
+
+        return true;
+    }
+
+    public boolean addVoluntaryHelper(Voluntary deploy) {
+
+        extendedVoluntaryList.add(deploy); mExtraVoluntaryCount += 1;
+        sql_interface.addVoluntary(deploy);
 
         return true;
     }
@@ -323,6 +333,10 @@ public class Database {
         extendedList.addAll(opportunities);
 
         return extendedList;
+    }
+
+    public Voluntary getVoluntary (int id){
+        return extendedVoluntaryList.get(id-1);
     }
 
     public void saveLocalState(Context ctx) {
@@ -412,6 +426,9 @@ public class Database {
         extendedOrganizationList = sql_interface.getAllOrganizations();
         mExtraOrganizationCount = sql_interface.getOrganizationCount();
 
+        extendedVoluntaryList = sql_interface.getAllVoluntaries();
+        mExtraVoluntaryCount = sql_interface.getVoluntaryCount();
+
         extendedUserList = sql_interface.getAllUsers();
         mExtraUserCount = sql_interface.getUserCount();
     }
@@ -420,9 +437,9 @@ public class Database {
         mExtraOpportunityCount = 19 + 0;
         extendedOpportunityList = new LinkedList<>();
         extendedOrganizationList = new LinkedList<>();
+        extendedVoluntaryList = new LinkedList<>();
         extendedUserList = new LinkedList<>();
 
         org_opportunityList = new LinkedHashMap<>(5);
     }
-
 }

@@ -69,7 +69,7 @@ public class OrganizationScreen extends AppCompatActivity
             return;
 
         try{
-            mUserProfile = Database.getInstance(getApplicationContext()).getOrganizacoes().get(mLoggedUser.getId());
+            mUserProfile = Database.getInstance(getApplicationContext()).getOrganizations().get(mLoggedUser.getId()-1);
         } catch (IndexOutOfBoundsException e){
             setUpUserProfileDialogError();
             return;

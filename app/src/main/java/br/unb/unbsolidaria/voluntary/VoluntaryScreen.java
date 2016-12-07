@@ -16,6 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import br.unb.unbsolidaria.SignInActivity;
 import br.unb.unbsolidaria.R;
@@ -34,6 +35,8 @@ public class VoluntaryScreen extends AppCompatActivity
     private User mLoggedUser;
     private Voluntary mUserProfile;
     private NavigationView mNavigationView;
+
+    public static String ENABLE_JOIN = "br.unb.unbsolidaria.ENABLEJOIN";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +73,7 @@ public class VoluntaryScreen extends AppCompatActivity
             return;
 
         try{
-            mUserProfile = Database.getInstance(getApplicationContext()).getVoluntaries().get(mLoggedUser.getId());
+            mUserProfile = Database.getInstance(getApplicationContext()).getVoluntaries().get(mLoggedUser.getId()-1);
         } catch (IndexOutOfBoundsException e){
             setUpUserProfileDialogError();
             return;
@@ -150,10 +153,11 @@ public class VoluntaryScreen extends AppCompatActivity
             mActivityToolbar.setTitle("Novidades");
             ft.commit();
         } else if (id == R.id.volv_sbViewOpportunityItem) {
-            Intent intent = new Intent(this, ViewOpportunities.class);
-            intent.putExtra("user", mUserProfile);
-            startActivity(intent);
-            ft.commit();
+            userFragment = new ViewOpportunities();
+            ft.add(R.id.co_frameLayout, userFragment).commit();
+            Bundle bundle = new Bundle();
+            userFragment.setArguments(bundle);
+            bundle.putSerializable(ENABLE_JOIN, mLoggedUser);
             mActivityToolbar.setTitle("Ver Oportunidades");
 
         } else if (id == R.id.orgv_sbEditProfileItem) {
