@@ -11,17 +11,17 @@ import br.unb.unbsolidaria.persistency.Database;
  * However, doing that so will just mess up with .persistency.DataBase
  */
 public class User implements Serializable {
+    private int         id;
     private String      login;
     private String      password;
     private UserType    type;
-    private int         id;
 
     public enum UserType{
         organization, voluntary
     }
 
     private static int PASS_MAX_LEN = 45;
-    private static List<User> mUserList = Database.getInstance().getUsers();
+    //private static List<User> mUserList = Database.getInstance().getUsers();
 
     //source: http://stackoverflow.com/a/16058059
     private static boolean isValidEmailAddress(String email) {
@@ -51,12 +51,13 @@ public class User implements Serializable {
         if (password.length() > PASS_MAX_LEN)
             throw new IllegalArgumentException("Password is not valid. Length > " + PASS_MAX_LEN);
 
+        /*
         //note: As the database is local we just use the very basic linear search O(n).
         for(User user : mUserList){
             if (user.login.equals(login))
                 if (user.password.equals(password))
                     return user;
-        }
+        }*/
 
         return null;
     }
@@ -65,7 +66,27 @@ public class User implements Serializable {
         return this.id;
     }
 
+    public String getPassword() { return password; }
+
+    public String getLogin() { return login; }
+
     public UserType getType(){
         return this.type;
+    }
+
+    public int getTypeInt(){
+        switch (this.type){
+            case voluntary:
+                return 0;
+            case organization:
+                return 1;
+        }
+
+        return -1;
+    }
+
+    public static UserType getIntType(int i){
+        if (i==0) return UserType.voluntary;
+        return UserType.organization;
     }
 }

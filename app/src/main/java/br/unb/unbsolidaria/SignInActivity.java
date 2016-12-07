@@ -16,6 +16,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import br.unb.unbsolidaria.entities.User;
 import br.unb.unbsolidaria.entities.Voluntary;
 import br.unb.unbsolidaria.organization.OrganizationScreen;
+import br.unb.unbsolidaria.persistency.DBHandler;
 import br.unb.unbsolidaria.voluntary.VoluntaryScreen;
 
 
@@ -32,8 +33,15 @@ public class SignInActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if ( getIntent().getBooleanExtra(SignUpActivity.SILENT_LOGIN, false) == true){
+            onLoginSuccess((User)getIntent().getSerializableExtra(LOGIN_MESSAGE));
+            return;
+        }
+
+
+
         setContentView(R.layout.activity_login);
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getApplicationContext());
 
         _emailText = (EditText) findViewById(R.id.input_email);
         _passwordText = (EditText) findViewById(R.id.input_password);
@@ -80,7 +88,7 @@ public class SignInActivity extends AppCompatActivity {
             public void run() {
                 // TODO: Implement REST OATH here
                 // local user account DB (see .persistency.Database)
-                User user = User.getUserFromCredentials(email, password);
+                User user = DBHandler.getInstance(getApplicationContext()).getUserFromCredentials(email, password);
                 if ( user != null ){
                     onLoginSuccess(user);
                 } else {
@@ -88,7 +96,7 @@ public class SignInActivity extends AppCompatActivity {
                 }
                 progressDialog.dismiss();
             }
-        }, 3000);
+        }, 1000);
 
     }
 

@@ -14,24 +14,16 @@ public class Opportunity {
     //TODO: discutir feature de aprovação por parte da Organização
     //não há entidade no banco de dados
     private boolean requerAprovacao;
-    //ID da Opportunity
     private int id;
-    //Local
-    //TODO: classe Local para conter informações tais como CEP
-    private String address;
-    //Organização Resp.
-    private Organization organization;
-    //Quantidade de vagas
-    private int nPositions;
-    //Título
     private String title;
-    //Descrição
     //TODO: definir limite da descrição (precisa estar acordado com o appWeb)
     private String description;
+    //TODO: classe Local para conter informações tais como CEP
+    private String address;
+    private Organization organization;
+    private int nPositions; //qtd. de vagas
     //TODO: dias pontuais e repetições
-    //Data de Início
     private Calendar startDate;
-    //Data de Fim
     private Calendar endDate;
 
     private LinkedList<Voluntary> approvedVoluntaries = null;

@@ -39,7 +39,7 @@ public class OpportunityAcitivity extends AppCompatActivity {
         loggedVoluntary = (Voluntary)getIntent().getSerializableExtra(ViewOpportunities.VIEW_MESSAGE);
         int id = getIntent().getIntExtra("id", 0);
 
-        Database bd = Database.getInstance();
+        Database bd = Database.getInstance(getApplicationContext());
         Opportunity opportunity = bd.getOpportunitie(id);
 
         ImageView logo = (ImageView) findViewById(R.id.iv_logo);

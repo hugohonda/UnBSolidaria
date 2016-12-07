@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.DatePickerDialog;
 import android.content.DialogInterface;
 import android.content.res.Resources;
+import android.graphics.Path;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import java.util.regex.Pattern;
 
 import br.unb.unbsolidaria.R;
 import br.unb.unbsolidaria.entities.Opportunity;
+import br.unb.unbsolidaria.persistency.DBHandler;
 import br.unb.unbsolidaria.persistency.Database;
 
 public class CreateOpportunity extends Fragment implements View.OnClickListener {
@@ -103,10 +105,10 @@ public class CreateOpportunity extends Fragment implements View.OnClickListener 
         btSend = (Button)parentView.findViewById(R.id.co_btSend);
         btSend.setOnClickListener(this);
 
-        dbInterface = Database.getInstance();
+        dbInterface = Database.getInstance(getContext());
         if(dbInterface == null) {
             setUpFormDialog("Banco de dados se encontra offline. Tente novamente mais tarde.");
-
+            parentInterface.restart();
         }
 
         parentInterface = (OrganizationScreen)getActivity();
@@ -162,9 +164,12 @@ public class CreateOpportunity extends Fragment implements View.OnClickListener 
         String startDate = etStartDate.getText().toString();
         String endDate = etEndDate.getText().toString();
 
-        Opportunity db_commitReturn = dbInterface.addOpportunityHelper(title, description, local, spots, startDate, endDate, parentInterface.getUserProfile());
+        Opportunity deploy = new Opportunity(dbInterface.getOpportunityCount()+1, local, spots,
+                title, description, Database.getCalendar(startDate), Database.getCalendar(endDate),
+                parentInterface.getUserProfile());
 
-        if (db_commitReturn == null){
+        boolean db_sucess = dbInterface.addOpportunityHelper(deploy);
+        if (!db_sucess){
             setUpFormDialog("Ocorreu um erro na comunicação com o Banco de Dados. Tente novamente mais tarde.");
             parentInterface.restart();
         }

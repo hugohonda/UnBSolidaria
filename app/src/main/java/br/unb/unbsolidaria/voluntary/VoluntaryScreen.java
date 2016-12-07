@@ -70,7 +70,7 @@ public class VoluntaryScreen extends AppCompatActivity
             return;
 
         try{
-            mUserProfile = Database.getInstance().getVoluntaries().get(mLoggedUser.getId());
+            mUserProfile = Database.getInstance(getApplicationContext()).getVoluntaries().get(mLoggedUser.getId());
         } catch (IndexOutOfBoundsException e){
             setUpUserProfileDialogError();
             return;
@@ -169,7 +169,7 @@ public class VoluntaryScreen extends AppCompatActivity
     }
 
     private void exitHandler() {
-        Database.getInstance().saveLocalState(getApplicationContext());
+        Database.getInstance(getApplicationContext()).saveLocalState(getApplicationContext());
         finish();
     }
 

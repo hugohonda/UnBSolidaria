@@ -35,7 +35,7 @@ public class ViewOpportunities extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        Database bd = Database.getInstance();
+        Database bd = Database.getInstance(getApplicationContext());
         mList = bd.getOpportunitiesList();
 
         mAdapter = new OpportunitiesAdapter(this, mList, (Voluntary) getIntent().getSerializableExtra("user"));

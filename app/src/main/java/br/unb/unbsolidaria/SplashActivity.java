@@ -11,9 +11,6 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //Load local database contents
-        Database.getInstance().loadLocalState(getApplicationContext());
     }
 
     @Override
@@ -23,6 +20,9 @@ public class SplashActivity extends AppCompatActivity {
         //Start SignInActivity
         Intent intent = new Intent(this, SignInActivity.class);
         startActivity(intent);
+
+        //Load local database contents
+        Database.getInstance(getApplicationContext()).loadLocalState(getApplicationContext());
     }
 
 }

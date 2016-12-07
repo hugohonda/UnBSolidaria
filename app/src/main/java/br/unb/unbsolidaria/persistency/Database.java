@@ -43,11 +43,16 @@ public class Database {
     //DataBase Extension Program
     private static String db_file_location = "db_inst00.dat";
     private int mExtraOpportunityCount;
+    private int mExtraVoluntaryCount;
+    private int mExtraOrganizationCount;
+    private int mExtraUserCount;
     private List<Opportunity> extendedOpportunityList;
+    private List<Organization> extendedOrganizationList;
+    private List<Voluntary> extendedVoluntaryList;
+    private LinkedList<User> extendedUserList;
     private LinkedHashMap<Integer, LinkedList<Integer>> org_opportunityList;
 
-
-    private int mExtraVoluntaryCount;
+    private DBHandler sql_interface;
 
     private boolean customUser;
 
@@ -186,13 +191,10 @@ public class Database {
         addOrganizationOpportunity(organizacoes.get(demo_orgID), opportunities.get(demo_orgID));
     }
 
-    private int getOpportunityCount(){
-        return mExtraOpportunityCount;
-    }
-
-    public static Database getInstance() {
+    public static Database getInstance(Context ctx) {
         if (instance == null) {
             instance = new Database();
+            instance.sql_interface = DBHandler.getInstance(ctx);
         }
         return instance;
     }
@@ -261,6 +263,7 @@ public class Database {
      * Than that nearly new created object is added to the organization_has_opportunity list and
      * returned by this function.
      */
+    /*
     public Opportunity addOpportunityHelper(String title, String description, String local, int spots, String startDate, String endDate, Organization org){
         Opportunity newOpportunity;
 
@@ -277,7 +280,41 @@ public class Database {
         addOrganizationOpportunity(org, newOpportunity);
 
         return newOpportunity;
+    }*/
+    public boolean addOpportunityHelper(Opportunity deploy){
+        if (deploy.getOrganization() == null)
+            return false;
+
+        extendedOpportunityList.add(deploy); mExtraOpportunityCount += 1;
+        sql_interface.addOpportunity(deploy);
+
+        return true;
     }
+
+    public int getOpportunityCount(){
+        return mExtraOpportunityCount;
+    }
+
+    public int getUserCount() {
+        return mExtraUserCount;
+    }
+
+    public boolean addOrganizationHelper(Organization deploy){
+
+        extendedOrganizationList.add(deploy); mExtraOrganizationCount += 1;
+        sql_interface.addOrganization(deploy);
+
+        return true;
+    }
+
+    public boolean addUserHelper (User deploy){
+
+        extendedUserList.add(deploy); mExtraUserCount += 1;
+        sql_interface.addUser(deploy);
+
+        return true;
+    }
+
 
     public List<Opportunity> getOpportunitiesList() {
         List<Opportunity> extendedList;
@@ -324,6 +361,7 @@ public class Database {
         }
     }
 
+    /*
     public void loadLocalState(Context ctx){
         FileInputStream fis;
         try {
@@ -362,11 +400,27 @@ public class Database {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    } */
+
+    public void loadLocalState(Context ctx){
+
+        // DB uses all static opportunities
+        extendedOpportunityList = sql_interface.getAllOpportunities();
+        mExtraOpportunityCount = sql_interface.getOpportunityCount();
+
+
+        extendedOrganizationList = sql_interface.getAllOrganizations();
+        mExtraOrganizationCount = sql_interface.getOrganizationCount();
+
+        extendedUserList = sql_interface.getAllUsers();
+        mExtraUserCount = sql_interface.getUserCount();
     }
 
     private void createDBExtendedList() {
         mExtraOpportunityCount = 19 + 0;
         extendedOpportunityList = new LinkedList<>();
+        extendedOrganizationList = new LinkedList<>();
+        extendedUserList = new LinkedList<>();
 
         org_opportunityList = new LinkedHashMap<>(5);
     }
